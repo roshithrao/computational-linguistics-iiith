@@ -1,0 +1,37 @@
+ 
+<Experiment> heading
+
+      List of Button Functionalities  :
+
+     1. selection dropdown :(center)CSS
+        option 1 : English and option 2 : Hindi
+
+      heading ( Form a sentence( Declarative or interrogative or any other type) from the given words
+   
+      2. After selecting English or Hindi , everytime it should give a  random new sentence from the array of sentences list           (Random Function)
+
+     3. I should take the sentence and shuffle them and generate buttons side by side for every sentence
+         -> display by shuffling of sentence function
+         -> generate buttons function
+
+     4.   Now on button click of each word -> button disappers
+       Formed Sentence (after selecting words) heading (Css violet color) 
+
+     5.  And the value of the button appears i.e., word(in bold black) everytime when the button is clicked new word        is appended with previous word with space
+
+    6. Reform button should appear as soon as first button is clicked
+       -->Reform() function clears all the formed sentence and buttons should appear as previous
+
+    7. After all the buttons are clicked --> Check the correctness of this sentence should appear
+      Compare() --> compares the formed sentence and the actual sentence and should innerhtml correct or wrong answer
+        ---> if equal --> Display Correct answer!!! (Green Css)
+        ---> not equal --> Display Wrong answer!!! (Red Css) and Get Correct Sentence button should below it
+   
+     8. Get correct sentence button - onclick() - changes to Hide the correct sentences and onclick() that button - it should      hide  the sentences 
+  
+    9. On clicking re-form the sentence at this point of time also --> It should clear everything.
+      
+     
+  
+    
+     
