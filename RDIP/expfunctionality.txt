@@ -30,7 +30,13 @@
      8. Get correct sentence button - onclick() - changes to Hide the correct sentences and onclick() that button - it should      hide  the sentences 
   
     9. On clicking re-form the sentence at this point of time also --> It should clear everything.
-      
+
+   List of few functionalities to be added :
+       
+      1. Getting the next random question on clicking the next question button
+           --> next random question button - next shuffled question
+      2. Display try again button after clicking getting the wrong answer, it should also perform like reform sentence button
+           --> should clear everything.
      
   
     
