@@ -1,7 +1,7 @@
 //corpus requirements included.
 
 var answers = '{"English":['+
-    '{"s1":"John ate an apple before afternoon", "s2":"before afternoon John ate an apple", "c":"John before afternoon ate an apple"},' +
+    '{"s1":"John ate an apple before afternoon", "s2":"before afternoon John ate an apple", "s3":"John before afternoon ate an apple"},' +
     '{"s1":"some students like to study in the night", "s2":"at night some students like to study"},' +
     '{"s1":"John and Mary went to church", "s2":"Mary and John went to church"},'+
     '{"s1":"John went to church after eating", "s2":"after eating John went to church","s3":"John after eating went to church"},' +
@@ -31,9 +31,14 @@ var answers = '{"English":['+
         '"s6":"वहाँ है बड़ी सी एक किताब", "s7":"है वहाँ एक बड़ी सी किताब", "s8":"है वहाँ बड़ी सी एक किताब"}]}';   
 
 var language = " ";
+var sentence = JSON.parse(answers);
+var random_sentence = " ";
+var question = 0;
+var shuffle_arr;
 
 
 function expdisplay(){
+	document.getElementById("exp-buttons").innerHTML = " ";
     language = document.getElementById('language').options[document.getElementById('language').selectedIndex].text;
     if(language == "----Select Language----"){
         alert('Select a Language');
@@ -42,8 +47,73 @@ function expdisplay(){
     else if(language == "English" || language == "Hindi"){
         document.getElementById("desc-head").innerHTML = "Form a sentence (Declarative or Interrogative or any other type) from the given words";
         document.getElementById("desc-tag").innerHTML = "(select the buttons in proper order)";
-       return true; 
+        select_sentence(language);
     }
 }
+
+function select_sentence(language)
+{
+	var arr;
+
+      if(language == "English")
+      {
+         question = Math.floor(Math.random()*10);
+        random_sentence = sentence.English[question].s1;
+        arr = random_sentence.split(" ");
+        shuffle_arr = shuffle(arr);
+        buttons_add(shuffle_arr);
+      }
+      else if(language == "Hindi")
+      {
+         question = Math.floor(Math.random()*7);
+         random_sentence = sentence.Hindi[question].s1;
+         arr = random_sentence.split(" ")
+         shuffle_arr = shuffle(arr);
+         buttons_add(shuffle_arr);
+
+
+      }
+}  
+
+function shuffle(arr)
+{
+	
+    var i,j,k;
+    for(i = 0;i<arr.length;i++)
+    {
+        j = Math.floor(Math.random()*(i+1))
+        k = arr[i];
+        arr[i] = arr[j];
+        arr[j] = k;
+
+    }
+    return arr;
+ }
+
+ function buttons_add(array)
+ {
+    for(i=0;i<array.length;i++)
+    {
+    	var k =1;
+
+        var button = document.createElement("BUTTON");
+        button.setAttribute("id",k);
+        button.setAttribute("style","background-color:white;text-align:center;padding:10px;margin:10px;align:center;margin-left:50px;cursor:pointer;")
+        button.setAttribute("value",array[i]);
+        button.innerHTML = array[i];
+        document.getElementById("exp-buttons").appendChild(button);
+
+
+    }	
+     
+
+
+ }
+
+
+
+
+
+
 
 
