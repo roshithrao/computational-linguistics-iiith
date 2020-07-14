@@ -30,5 +30,20 @@ var answers = '{"English":['+
     '{"s1":"एक बड़ी सी किताब वहाँ है", "s2":"एक बड़ी सी किताब है वहाँ", "s3":"बड़ी सी एक किताब वहाँ है", "s4":"बड़ी सी एक किताब है वहाँ", "s5":"वहाँ है एक बड़ी सी किताब",'+
         '"s6":"वहाँ है बड़ी सी एक किताब", "s7":"है वहाँ एक बड़ी सी किताब", "s8":"है वहाँ बड़ी सी एक किताब"}]}';   
 
+var language = " ";
+
+
+function expdisplay(){
+    language = document.getElementById('language').options[document.getElementById('language').selectedIndex].text;
+    if(language == "----Select Language----"){
+        alert('Select a Language');
+        return false;
+    }
+    else if(language == "English" || language == "Hindi"){
+        document.getElementById("desc-head").innerHTML = "Form a sentence (Declarative or Interrogative or any other type) from the given words";
+        document.getElementById("desc-tag").innerHTML = "(select the buttons in proper order)";
+       return true; 
+    }
+}
 
 
