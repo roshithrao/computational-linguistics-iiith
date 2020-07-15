@@ -40,8 +40,7 @@ var typed_sentence = " ";
 
 
 function expdisplay(){
-	clear();
-    count = 0;
+	clear_out();
     language = document.getElementById('language').options[document.getElementById('language').selectedIndex].text;
 
     if(language == "----Select Language----"){
@@ -59,7 +58,7 @@ function select_sentence(language)
 {
 	var arr;
 
-      if(language == "English")
+     if(language == "English")
       {
          question = Math.floor(Math.random()*10);
         random_sentence = sentence.English[question].s1;
@@ -98,7 +97,7 @@ function shuffle(arr)
  {
     for(i=0;i<array.length;i++)
     {
-        (function btn(i){
+    
 
         var button = document.createElement("BUTTON");
         button.setAttribute("id",String(i));
@@ -107,45 +106,55 @@ function shuffle(arr)
         button.innerHTML = array[i];
         document.getElementById("exp-buttons").appendChild(button);
 
-    })(i)
-    }	
+    }
+    	
      
  }
 
 function second_msg(id){
-    if(id2 == "exp-buttons")
+
+    if(id == "exp-buttons")
         return false ;
-    document.getElementById("second-message").innerHTML = "Formed Sentence ";
-    document.getElementById("tag-line").innerHTML = "(after selecting words):";
+
+    document.getElementById("second-message").innerHTML = "Formed Sentence(after selecting words): ";
     document.getElementById("reset-button").style.display = "initial";
  
  }
 
    function formed(id){
 
-   if(id2 == "exp-buttons")
+   if(id == "exp-buttons")
         return false;
     if(count == 0){
-        document.getElementById('typed-sentence').innerHTML = String( document.getElementById(id2).value );
+        document.getElementById('typed-sentence').innerHTML = String( document.getElementById(id).value );
     }
     else{
-        document.getElementById('typed-sentence').innerHTML = typed_sentence + " " + String( document.getElementById(id2).value );
-        console.log(document.getElementById('typed-sentence').innerHTML)
+
+        document.getElementById('typed-sentence').innerHTML = String(document.getElementById('typed-sentence').innerHTML)+ " " + String( document.getElementById(id).value );    
     }
     typed_sentence = document.getElementById('typed-sentence').innerHTML;
-    document.getElementById(id2).style.display = "none";
-    count += 1;
+    document.getElementById(id).style.display = "none";
+    
+    console.log(shuffle_arr.length);
+    count = count +1;
 
     if(count == shuffle_arr.length){
         document.getElementById("checkcorrect-button").style.display = "initial";
     }
+
 } 
 
+function reset()
+{
+    clear_out();
+    buttons_add(shuffle_arr);
+}
 
-function clear(){
+
+function clear_out(){
+    count = 0;
     document.getElementById("exp-buttons").innerHTML = " "
     document.getElementById("second-message").innerHTML = "";
-    document.getElementById("tag-line").innerHTML = "";
     document.getElementById('typed-sentence').innerHTML = "";
     document.getElementById("reset-button").style.display = "none";
     document.getElementById("checkcorrect-button").style.display = "none";
