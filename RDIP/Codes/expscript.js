@@ -35,11 +35,15 @@ var sentence = JSON.parse(answers);
 var random_sentence = " ";
 var question = 0;
 var shuffle_arr;
+var count = 0;
+var typed_sentence = " ";
 
 
 function expdisplay(){
-	document.getElementById("exp-buttons").innerHTML = " ";
+	clear();
+    count = 0;
     language = document.getElementById('language').options[document.getElementById('language').selectedIndex].text;
+
     if(language == "----Select Language----"){
         alert('Select a Language');
         return false;
@@ -79,7 +83,7 @@ function shuffle(arr)
 {
 	
     var i,j,k;
-    for(i = 0;i<arr.length;i++)
+    for(i = 0; i <arr.length; i++)
     {
         j = Math.floor(Math.random()*(i+1))
         k = arr[i];
@@ -94,26 +98,58 @@ function shuffle(arr)
  {
     for(i=0;i<array.length;i++)
     {
-    	var k =1;
+        (function btn(i){
 
         var button = document.createElement("BUTTON");
-        button.setAttribute("id",k);
-        button.setAttribute("style","background-color:white;text-align:center;padding:10px;margin:10px;align:center;margin-left:50px;cursor:pointer;")
+        button.setAttribute("id",String(i));
         button.setAttribute("value",array[i]);
+        button.setAttribute("style","border:1px solid black;cursor:pointer;padding:5px;margin:10px;")
         button.innerHTML = array[i];
         document.getElementById("exp-buttons").appendChild(button);
 
-
+    })(i)
     }	
      
-
-
  }
 
+function second_msg(id){
+    if(id2 == "exp-buttons")
+        return false ;
+    document.getElementById("second-message").innerHTML = "Formed Sentence ";
+    document.getElementById("tag-line").innerHTML = "(after selecting words):";
+    document.getElementById("reset-button").style.display = "initial";
+ 
+ }
+
+   function formed(id){
+
+   if(id2 == "exp-buttons")
+        return false;
+    if(count == 0){
+        document.getElementById('typed-sentence').innerHTML = String( document.getElementById(id2).value );
+    }
+    else{
+        document.getElementById('typed-sentence').innerHTML = typed_sentence + " " + String( document.getElementById(id2).value );
+        console.log(document.getElementById('typed-sentence').innerHTML)
+    }
+    typed_sentence = document.getElementById('typed-sentence').innerHTML;
+    document.getElementById(id2).style.display = "none";
+    count += 1;
+
+    if(count == shuffle_arr.length){
+        document.getElementById("checkcorrect-button").style.display = "initial";
+    }
+} 
 
 
-
-
+function clear(){
+    document.getElementById("exp-buttons").innerHTML = " "
+    document.getElementById("second-message").innerHTML = "";
+    document.getElementById("tag-line").innerHTML = "";
+    document.getElementById('typed-sentence').innerHTML = "";
+    document.getElementById("reset-button").style.display = "none";
+    document.getElementById("checkcorrect-button").style.display = "none";
+} 
 
 
 
