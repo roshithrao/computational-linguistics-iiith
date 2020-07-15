@@ -133,7 +133,7 @@ function second_msg(id){
         document.getElementById('typed-sentence').innerHTML = String(document.getElementById('typed-sentence').innerHTML)+ " " + String( document.getElementById(id).value );    
     }
     typed_sentence = document.getElementById('typed-sentence').innerHTML;
-    document.getElementById(id).style.display = "none";
+    document.getElementById(id).style.visibility = "hidden";
     
     //console.log(shuffle_arr.length);
     count = count +1;
@@ -163,7 +163,7 @@ function check_correct_or_not()
        {
             if(sentence.English[question][check] == typed_sentence)
             {
-                document.getElementById("right-wrong").style.visibility = "visible";
+                document.getElementById("right-wrong").style.display = "initial";
                 found = true;
                 return true;
             }
@@ -172,7 +172,8 @@ function check_correct_or_not()
         
            document.getElementById("right-wrong").innerHTML = "Wrong answer!!!"
            document.getElementById("right-wrong").style.color = "Red";
-           document.getElementById("right-wrong").style.visibility = "visible";
+           document.getElementById("right-wrong").style.display = "initial";
+           document.getElementById("getcorrect-button").style.display = "initial";
            return false;
        }
     }
@@ -182,7 +183,7 @@ function check_correct_or_not()
        {
             if(sentence.Hindi[question][check] == typed_sentence)
             {
-                document.getElementById("right-wrong").style.visibility = "visible";
+                document.getElementById("right-wrong").style.display = "initial";
                 found = true;
                 return true;
             }
@@ -191,7 +192,8 @@ function check_correct_or_not()
         
            document.getElementById("right-wrong").innerHTML = "Wrong answer!!!"
            document.getElementById("right-wrong").style.color = "Red";
-           document.getElementById("right-wrong").style.visibility = "visible";
+           document.getElementById("right-wrong").style.display = "initial";
+           document.getElementById("getcorrect-button").style.display = "initial";
            return false;
        }
     }
@@ -206,7 +208,8 @@ function clear_out(){
     document.getElementById('typed-sentence').innerHTML = "";
     document.getElementById("reset-button").style.display = "none";
     document.getElementById("checkcorrect-button").style.display = "none";
-    document.getElementById("right-wrong").style.visibility = "hidden";
+    document.getElementById("right-wrong").style.display = "none";
+    document.getElementById("getcorrect-button").style.display = "none";
 
 } 
 
