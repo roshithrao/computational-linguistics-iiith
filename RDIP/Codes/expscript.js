@@ -2,7 +2,7 @@
 
 var answers = '{"English":['+
     '{"s1":"John ate an apple before afternoon", "s2":"before afternoon John ate an apple", "s3":"John before afternoon ate an apple"},' +
-    '{"s1":"some students like to study in the night", "s2":"at night some students like to study"},' +
+    '{"s1":"some students like to study in the night", "s2":"in the night some students like to study"},' +
     '{"s1":"John and Mary went to church", "s2":"Mary and John went to church"},'+
     '{"s1":"John went to church after eating", "s2":"after eating John went to church","s3":"John after eating went to church"},' +
     '{"s1":"did he go to market", "s2":"he did go to market"},' +
@@ -10,7 +10,7 @@ var answers = '{"English":['+
         '"s3":"my sister who sells cosmetics called the woman", "s4":"my sister who called the woman sells cosmetics"},'+
     '{"s1":"John goes to the library and studies", "s2":"John studies and goes to the library"},'+
     '{"s1":"John ate an apple so did she", "s2":"she ate an apple so did John"},'+
-    '{"s1":"the teacher returned the book after she noticed the error", "b":"the teacher noticed the error after she returned the book",'+
+    '{"s1":"the teacher returned the book after she noticed the error", "s2":"the teacher noticed the error after she returned the book",'+
         '"s3":"after the teacher returned the book she noticed the error", "s4":"after the teacher noticed the error she returned the book",'+
         '"s5":"she returned the book after the teacher noticed the error", "s6":"she noticed the error after the teacher returned the book",'+
         '"s7":"after she returned the book the teacher noticed the error", "s8":"after she noticed the error the teacher returned the book"},'+
@@ -44,7 +44,7 @@ function expdisplay(){
     language = document.getElementById('language').options[document.getElementById('language').selectedIndex].text;
 
     if(language == "----Select Language----"){
-        alert('Select a Language');
+        alert('Select your preferred Language');
         return false;
     }
     else if(language == "English" || language == "Hindi"){
@@ -152,6 +152,52 @@ function reset()
     buttons_add(shuffle_arr);
 }
 
+function check_correct_or_not()
+{
+    var found = false;
+
+     if(language == "English")
+     {
+
+       for(var check in sentence.English[question])
+       {
+            if(sentence.English[question][check] == typed_sentence)
+            {
+                document.getElementById("right-wrong").style.visibility = "visible";
+                found = true;
+                return true;
+            }
+       }
+       if (found == false) {
+        
+           document.getElementById("right-wrong").innerHTML = "Wrong answer!!!"
+           document.getElementById("right-wrong").style.color = "Red";
+           document.getElementById("right-wrong").style.visibility = "visible";
+           return false;
+       }
+    }
+    else if(language == "Hindi")
+    {
+         for(var check in sentence.Hindi[question])
+       {
+            if(sentence.Hindi[question][check] == typed_sentence)
+            {
+                document.getElementById("right-wrong").style.visibility = "visible";
+                found = true;
+                return true;
+            }
+       }
+       if (found == false) {
+        
+           document.getElementById("right-wrong").innerHTML = "Wrong answer!!!"
+           document.getElementById("right-wrong").style.color = "Red";
+           document.getElementById("right-wrong").style.visibility = "visible";
+           return false;
+       }
+    }
+
+}
+
 
 function clear_out(){
     count = 0;
@@ -160,6 +206,8 @@ function clear_out(){
     document.getElementById('typed-sentence').innerHTML = "";
     document.getElementById("reset-button").style.display = "none";
     document.getElementById("checkcorrect-button").style.display = "none";
+    document.getElementById("right-wrong").style.visibility = "hidden";
+
 } 
 
 
