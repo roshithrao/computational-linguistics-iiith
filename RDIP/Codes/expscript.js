@@ -135,12 +135,14 @@ function second_msg(id){
     typed_sentence = document.getElementById('typed-sentence').innerHTML;
     document.getElementById(id).style.display = "none";
     
-    console.log(shuffle_arr.length);
+    //console.log(shuffle_arr.length);
     count = count +1;
 
-    if(count == shuffle_arr.length){
-        document.getElementById("checkcorrect-button").style.display = "initial";
-    }
+   if(count == shuffle_arr.length)
+   {
+     document.getElementById("checkcorrect-button").style.display = "initial";
+   }
+    
 
 } 
 
