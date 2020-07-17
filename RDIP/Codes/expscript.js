@@ -179,6 +179,8 @@ function clear_out(){
     document.getElementById("getcorrect-button").style.display = "none";
     document.getElementById("getcorrect-button").innerHTML = "Get Correct Sentence";
     document.getElementById("correct-sentences").innerHTML = "";
+    document.getElementById("next-button").style.display = "none";
+    document.getElementById("tryagain-button").style.display = "none";
 
 } 
 
@@ -195,7 +197,10 @@ function check_correct_or_not()
        {
             if(sentence.English[question][check] == typed_sentence)
             {
+                document.getElementById("right-wrong").innerHTML = "Correct answer!!!"
+                document.getElementById("right-wrong").style.color = "Green";
                 document.getElementById("right-wrong").style.display = "initial";
+                document.getElementById("next-button").style.display = "initial";
                 found = true;
                 return true;
             }
@@ -206,6 +211,7 @@ function check_correct_or_not()
            document.getElementById("right-wrong").style.color = "Red";
            document.getElementById("right-wrong").style.display = "initial";
            document.getElementById("getcorrect-button").style.display = "initial";
+           document.getElementById("tryagain-button").style.display = "initial";
            return false;
        }
     }
@@ -215,7 +221,10 @@ function check_correct_or_not()
        {
             if(sentence.Hindi[question][check] == typed_sentence)
             {
+                document.getElementById("right-wrong").innerHTML = "Correct answer!!!"
+                document.getElementById("right-wrong").style.color = "Green";
                 document.getElementById("right-wrong").style.display = "initial";
+                document.getElementById("next-button").style.display = "initial";
                 found = true;
                 return true;
             }
@@ -226,6 +235,7 @@ function check_correct_or_not()
            document.getElementById("right-wrong").style.color = "Red";
            document.getElementById("right-wrong").style.display = "initial";
            document.getElementById("getcorrect-button").style.display = "initial";
+           document.getElementById("tryagain-button").style.display = "initial";
            return false;
        }
     }
@@ -270,6 +280,23 @@ function get_correct_sentences()
     
 }
 
+//added extra functionality - go to next Question button
+
+function next_question()
+{
+  
+  expdisplay();
+     
+}
+
+//added extra functionality try-again button
+
+function try_again()
+{
+
+  reset();
+
+}
 
 
 
