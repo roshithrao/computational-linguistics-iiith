@@ -46,7 +46,6 @@ var typed_sentence = " ";
 function expdisplay(){
 	clear_out();
     language = document.getElementById('language').options[document.getElementById('language').selectedIndex].text;
-
     if(language == "----Select Language----"){
         alert('Select your preferred Language');
         return false;
@@ -124,7 +123,7 @@ function second_msg(id){
     if(id == "exp-buttons")
         return false ;
 
-    document.getElementById("second-message").innerHTML = "Formed Sentence(after selecting words): ";
+    document.getElementById("second-message").innerHTML = "Formed Sentence(after selecting words):";
     document.getElementById("reset-button").style.display = "initial";
  
  }
@@ -256,8 +255,9 @@ function get_correct_sentences()
      {
        for(var ans in sentence.English[question])
        {
-
+          document.getElementById("correct-sentences").appendChild(document.createTextNode(ans+")" + " "));
           document.getElementById("correct-sentences").appendChild(document.createTextNode(sentence.English[question][ans]));
+          document.getElementById("correct-sentences").appendChild(document.createElement("br"));
           document.getElementById("correct-sentences").appendChild(document.createElement("br"));
        }
        return true;
@@ -266,7 +266,9 @@ function get_correct_sentences()
      {
        for(var ans in sentence.Hindi[question])
        {
+          document.getElementById("correct-sentences").appendChild(document.createTextNode(ans+")" + " "));
           document.getElementById("correct-sentences").appendChild(document.createTextNode(sentence.Hindi[question][ans]));
+          document.getElementById("correct-sentences").appendChild(document.createElement("br"));
           document.getElementById("correct-sentences").appendChild(document.createElement("br"));
        }
        return true;
