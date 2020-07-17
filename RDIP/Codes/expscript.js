@@ -30,6 +30,9 @@ var answers = '{"English":['+
     '{"s1":"एक बड़ी सी किताब वहाँ है", "s2":"एक बड़ी सी किताब है वहाँ", "s3":"बड़ी सी एक किताब वहाँ है", "s4":"बड़ी सी एक किताब है वहाँ", "s5":"वहाँ है एक बड़ी सी किताब",'+
         '"s6":"वहाँ है बड़ी सी एक किताब", "s7":"है वहाँ एक बड़ी सी किताब", "s8":"है वहाँ बड़ी सी एक किताब"}]}';   
 
+
+/*declared variables that are needed in code*/
+
 var language = " ";
 var sentence = JSON.parse(answers);
 var random_sentence = " ";
@@ -38,6 +41,7 @@ var shuffle_arr;
 var count = 0;
 var typed_sentence = " ";
 
+//displaying the message based on language selection dropdown
 
 function expdisplay(){
 	clear_out();
@@ -53,6 +57,8 @@ function expdisplay(){
         select_sentence(language);
     }
 }
+
+//selecting a sentence randomly from the given list of corpus sentences,shuffling and generating buttons
 
 function select_sentence(language)
 {
@@ -78,6 +84,8 @@ function select_sentence(language)
       }
 }  
 
+//shuffling the words of a sentence
+
 function shuffle(arr)
 {
 	
@@ -93,23 +101,23 @@ function shuffle(arr)
     return arr;
  }
 
+ //generating buttons to the words of sentence
+
  function buttons_add(array)
  {
     for(i=0;i<array.length;i++)
     {
-    
-
         var button = document.createElement("BUTTON");
         button.setAttribute("id",String(i));
         button.setAttribute("value",array[i]);
         button.setAttribute("style","border:1px solid black;cursor:pointer;padding:5px;margin:10px;")
         button.innerHTML = array[i];
         document.getElementById("exp-buttons").appendChild(button);
-
     }
-    	
-     
+    	    
  }
+
+//displaying second message after selecting the first button i.e.,word
 
 function second_msg(id){
 
@@ -121,7 +129,10 @@ function second_msg(id){
  
  }
 
-   function formed(id){
+//displaying the selected words as a sentence by making buttons to vanish
+
+function formed(id)
+{
 
    if(id == "exp-buttons")
         return false;
@@ -146,11 +157,32 @@ function second_msg(id){
 
 } 
 
+//functionality of reform button
+
 function reset()
 {
     clear_out();
     buttons_add(shuffle_arr);
 }
+ 
+ //clearing function
+
+function clear_out(){
+
+    count = 0;
+    document.getElementById("exp-buttons").innerHTML = " "
+    document.getElementById("second-message").innerHTML = "";
+    document.getElementById('typed-sentence').innerHTML = "";
+    document.getElementById("reset-button").style.display = "none";
+    document.getElementById("checkcorrect-button").style.display = "none";
+    document.getElementById("right-wrong").style.display = "none";
+    document.getElementById("getcorrect-button").style.display = "none";
+    document.getElementById("getcorrect-button").innerHTML = "Get Correct Sentence";
+    document.getElementById("correct-sentences").innerHTML = "";
+
+} 
+
+//functionality of check correct button
 
 function check_correct_or_not()
 {
@@ -200,18 +232,48 @@ function check_correct_or_not()
 
 }
 
+//functionality of get correct sentence button
 
-function clear_out(){
-    count = 0;
-    document.getElementById("exp-buttons").innerHTML = " "
-    document.getElementById("second-message").innerHTML = "";
-    document.getElementById('typed-sentence').innerHTML = "";
-    document.getElementById("reset-button").style.display = "none";
-    document.getElementById("checkcorrect-button").style.display = "none";
-    document.getElementById("right-wrong").style.display = "none";
-    document.getElementById("getcorrect-button").style.display = "none";
+function get_correct_sentences()
+{
+   var value = document.getElementById("getcorrect-button").innerHTML;
+   document.getElementById("correct-sentences").style.display = "initial";
+  
+   if(value == "Get Correct Sentence" || value == "Get Answers")
+   {                           
+     document.getElementById('getcorrect-button').innerHTML = "Hide the correct Sentence";
+     if(language == "English")
+     {
+       for(var ans in sentence.English[question])
+       {
 
-} 
+          document.getElementById("correct-sentences").appendChild(document.createTextNode(sentence.English[question][ans]));
+          document.getElementById("correct-sentences").appendChild(document.createElement("br"));
+       }
+       return true;
+     } 
+     else if(language == "Hindi")
+     {
+       for(var ans in sentence.Hindi[question])
+       {
+          document.getElementById("correct-sentences").appendChild(document.createTextNode(sentence.Hindi[question][ans]));
+          document.getElementById("correct-sentences").appendChild(document.createElement("br"));
+       }
+       return true;
+     }
+  }   
+  else if(value == "Hide the correct Sentence")
+  {
+        document.getElementById("getcorrect-button").innerHTML = "Get Answers";
+        document.getElementById("correct-sentences").innerHTML = " ";
+  }
+    
+}
+
+
+
+
+
 
 
 
