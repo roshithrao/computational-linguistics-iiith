@@ -1,0 +1,28 @@
+
+<Experiment> heading
+
+  List of Button Functionalities:
+  
+     1. Selection Dropdown consisting 3 options 
+          -->Corpus 1
+         ---> Corpus 2
+        ---> Corpus 3
+   2. On clicking the specified option , the respective corpus must display[ option onclick]
+       -->down the selection dropdown , the respective corpus
+      --->heading 2(msg - 2)
+      ---> tokens and types input boxes in block
+      ---> submit button down to it
+  3. Onclick submit button
+      -->Compare() function must compare no of words and types in corpus with actual values {if, if-else conditions}
+     --->And it should display right or wrong answer down to it 
+           --> If any the boxes is also wrong too, the input box should turn red(Css) and should display wrong answer
+           ---> If the answer is correct then the green input boxes(CSS) and the continue button should appear
+ 4. Onclick Continue button
+      --->submit button should disappear
+      ---> Second msg should appear and down to it #new types input box should appear
+      ---> down to it another Submit button should appear
+  5. Onclick Submit Button
+      ---> We have to check the no of the stem root words using snowballer stemmer and store it in a variable and then             compare the input box value with the variable value [ stemcompare() function]
+      ---> If it is correct, display correct answer otherwise display wrong answer
+
+      --------End of Experiment--------------------------------------------------- 
