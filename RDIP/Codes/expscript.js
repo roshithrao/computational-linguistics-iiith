@@ -124,7 +124,7 @@ function second_msg(id){
         return false ;
 
     document.getElementById("second-message").innerHTML = "Formed Sentence(after selecting words):";
-    document.getElementById("reset-button").style.display = "initial";
+    document.getElementById("reset-button").style.display = "";
  
  }
 
@@ -150,7 +150,7 @@ function formed(id)
 
    if(count == shuffle_arr.length)
    {
-     document.getElementById("checkcorrect-button").style.display = "initial";
+     document.getElementById("checkcorrect-button").style.display = "inline";
    }
     
 
@@ -198,8 +198,8 @@ function check_correct_or_not()
             {
                 document.getElementById("right-wrong").innerHTML = "Correct answer!!!"
                 document.getElementById("right-wrong").style.color = "Green";
-                document.getElementById("right-wrong").style.display = "initial";
-                document.getElementById("next-button").style.display = "initial";
+                document.getElementById("right-wrong").style.display = "inline";
+                document.getElementById("next-button").style.display = "inline";
                 found = true;
                 return true;
             }
@@ -208,9 +208,9 @@ function check_correct_or_not()
         
            document.getElementById("right-wrong").innerHTML = "Wrong answer!!!"
            document.getElementById("right-wrong").style.color = "Red";
-           document.getElementById("right-wrong").style.display = "initial";
-           document.getElementById("getcorrect-button").style.display = "initial";
-           document.getElementById("tryagain-button").style.display = "initial";
+           document.getElementById("right-wrong").style.display = "inline";
+           document.getElementById("getcorrect-button").style.display = "inline";
+           document.getElementById("tryagain-button").style.display = "inline";
            return false;
        }
     }
@@ -222,8 +222,8 @@ function check_correct_or_not()
             {
                 document.getElementById("right-wrong").innerHTML = "Correct answer!!!"
                 document.getElementById("right-wrong").style.color = "Green";
-                document.getElementById("right-wrong").style.display = "initial";
-                document.getElementById("next-button").style.display = "initial";
+                document.getElementById("right-wrong").style.display = "inline";
+                document.getElementById("next-button").style.display = "inline";
                 found = true;
                 return true;
             }
@@ -232,9 +232,9 @@ function check_correct_or_not()
         
            document.getElementById("right-wrong").innerHTML = "Wrong answer!!!"
            document.getElementById("right-wrong").style.color = "Red";
-           document.getElementById("right-wrong").style.display = "initial";
-           document.getElementById("getcorrect-button").style.display = "initial";
-           document.getElementById("tryagain-button").style.display = "initial";
+           document.getElementById("right-wrong").style.display = "inline";
+           document.getElementById("getcorrect-button").style.display = "inline";
+           document.getElementById("tryagain-button").style.display = "inline";
            return false;
        }
     }
@@ -246,7 +246,7 @@ function check_correct_or_not()
 function get_correct_sentences()
 {
    var value = document.getElementById("getcorrect-button").innerHTML;
-   document.getElementById("correct-sentences").style.display = "initial";
+   document.getElementById("correct-sentences").style.display = "inline";
   
    if(value == "Get Correct Sentence" || value == "Get Answers")
    {                           
