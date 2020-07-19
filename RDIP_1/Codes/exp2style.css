@@ -38,15 +38,31 @@ body
     font-size: 16px;
     color: #444444;
     margin-top: 50px;
-    margin-left:600px;
     padding : 10px;
 }
 
-/*#cdisplay
+#cdisplay
 {
-    
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 15px;
+}
 
+#table-display
+{
+    display: none;
 
-} */
+}
+
+input
+{
+    color: #444;
+}
+
+table,td
+{
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #b2bbc0;
+    max-width: 700px;
+}

@@ -10,7 +10,7 @@ var corpus = " ";
 
 
 
-/* function expdisplay(){
+ function expdisplay(){
 	
     corpus = document.getElementById('corpus-selection').options[document.getElementById('corpus-selection').selectedIndex].text;
     if(corpus == "----Select a corpus----"){
@@ -19,18 +19,22 @@ var corpus = " ";
     }
     else if(corpus == "Corpus 1" ){
         document.getElementById("cdisplay").innerHTML = corpus_one;
+        document.getElementById("second-msg").innerHTML="Enter the number of tokens and types for the above corpus:"
+        document.getElementById("table-display").style.display = "initial";
            
     }
      else if(corpus == "Corpus 2" ){
         document.getElementById("cdisplay").innerHTML = corpus_two;
-           
+        document.getElementById("second-msg").innerHTML="Enter the number of tokens and types for the above corpus:"   
+        document.getElementById("table-display").style.display = "initial";
     }
      else if(corpus == "Corpus 3" ){
         document.getElementById("cdisplay").innerHTML = corpus_three;
-           
+        document.getElementById("second-msg").innerHTML="Enter the number of tokens and types for the above corpus:"  
+        document.getElementById("table-display").style.display = "initial"; 
     }
 }  
-*/
+
 
 
 

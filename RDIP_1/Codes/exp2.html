@@ -10,10 +10,12 @@
       <title>Virtual Labs</title>
    </head>
    <body>
+
    	 <div class="experiment">
-         <div class="heading">
+       <div class="heading">
             <h1>Experiment</h1>
          </div>
+         <center>
          <div class="selection-list">
             <select id="corpus-selection" onchange="expdisplay()">
                <option value="null">----Select a corpus----</option>
@@ -21,10 +23,24 @@
                <option value="Corpus2">Corpus 2</option>
                <option value="Corpus3">Corpus 3</option>
             </select>
-         </div>
-        <!--<p id="cdisplay" style="text-align: center"></p>-->
+         </div>   
+        <p id="cdisplay" style="text-align: center"></p>
+        <br>
+        <p id="second-msg" style="text-align: center"></p>
+        <div id="table-display">
+          <table style="text-align: center;">
+            <tr><td>#tokens:</td>
+                <td><input type="text" id="input1" size="4" font size="4px" font color="darkslategrey"></td>
+            </tr>
+             <tr><td>#types:</td>
+                <td><input type="text" id="input2" size="4" font size="4px" font color="darkslategrey"></td>
+            </tr>
+          </table>
+
+      </center>
 
 
+        </div>
 
 
 
