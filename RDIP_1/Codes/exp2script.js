@@ -205,20 +205,22 @@ function split_and_count_types(corp)
    
  function compare_stem_word(corp)
  {
-
+      var count = 0;
       document.getElementById("submit-button").style.display = "none";
       document.getElementById("continue-button").style.display = "none";
       document.getElementById("right-wrong").style.display = "none";
       document.getElementById("third-msg").innerHTML = "Now, consider all the tokens with the same 'root' word to be of the same type. Recalculate the number of types:";
       document.getElementById("third-input").style.display = "inline";
-      document.getElementById("submit-button2").onclick = function(){ count_stem_words(corp)};
-      
+      document.getElementById("submit-button2").onclick = function(){ count = count_stem_words(corp)};
 
  }
 
  function count_stem_words(corp)
  {
     var str=corp;
+    var count = 0;
+    if(corp === corpus_one[0])
+    {
  //removing all extra characters except words and spaces from the corpus
    str= str.replace(/[^\w\s]|_/g, "")
    str = str.replace(/\s+/g, " ");
@@ -229,17 +231,75 @@ function split_and_count_types(corp)
 
    for(var i =0; i<str.length;i++)
    {
+   
+    if(str[i]=="grew"||str[i]=="find"||str[i]=="found"||str[i]=="grown"||str[i]=="eat"||str[i]=="ate") {  
+       continue;
+     } 
+     else{
+
+      stemmer.setCurrent(str[i]);
+      stemmer.stem();
+      arr.push(stemmer.getCurrent());
+    
+      }
+    }
+   } 
+    else if(corp === corpus_two[0])
+    {
+
+     //removing all extra characters except words and spaces from the corpus
+      str= str.replace(/[^\w\s]|_/g, "")
+      str = str.replace(/\s+/g, " ");
+
+      // spliting and counting the words in the corpus
+      str=str.split(" ");
+      var arr = [];
+
+   for(var i =0; i<str.length;i++)
+   {    
+       if(str[i]=='to' || str[i]=='took' || str[i]=='himself' || str[i]=='heard' || str[i]=='get' || str[i]=='done' || str[i]=='this' || str[i]=='his'){
+                continue;
+         } 
+     
+      else
+     {
+  
+      stemmer.setCurrent(str[i]);
+      stemmer.stem();
+      arr.push(stemmer.getCurrent());
+    
+      
+     }
+
+    }
+  }
+  else if(corp === corpus_three[0])
+  {
+     //removing all extra characters except words and spaces from the corpus
+   str= str.replace(/[^\w\s]|_/g, "")
+   str = str.replace(/\s+/g, " ");
+
+    // spliting and counting the words in the corpus
+   str=str.split(" ");
+   var arr = [];
+
+   for(var i =0; i<str.length;i++)
+   {
+    
+    if(str[i]=='to' || str[i]=='came' || str[i]=='me' || str[i]=='saw' || str[i]=='ran' || str[i]=='me' || str[i]=='himself' || str[i]=='than' || str[i]=='they') {  
+       continue;
+     } 
+     else{
 
       stemmer.setCurrent(str[i]);
       stemmer.stem();
       //console.log(stemmer.getCurrent());
       arr.push(stemmer.getCurrent());
     
-
-   }
+      }
+    }
+  } 
    console.log(arr);
    count = count_types(arr);
    console.log(count);
-
-
  }
