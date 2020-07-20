@@ -7,6 +7,7 @@ var corpus_two =['A wolf carried off a lamb. The lamb said, " I know you are goi
 var corpus_three =['A man had a little dog, and he was very fond of it. He would pat its head, and take it on his knee, and talk to it. Then he would give it little bits of food from his own plate. A donkey looked in at the window and saw the man and the dog. "Why does he not make a pet of me?" said the donkey. "It is not fair. I work hard, and the dog only wags its tail, and barks, and jumps on its master\'s knee. It is not fair." Then the donkey said to himself, "If I do what the dog does, he may make a pet of me." So the donkey ran into the room. It brayed as loudly as it could. It wagged its tail so hard that it knocked over a jar on the table. Then it tried to jump on to its master\'s knee. The master thought the donkey was mad, and he shouted, "Help! Help!" Men came running in with sticks, and they beat the donkey till it ran out of the house, and they drove it back to the field. "I only did what the dog does," said the donkey," and yet they make a pet of the dog, and they beat me with sticks. It is not fair.']
 
 var corpus = " ";
+var corpus_selected = " ";
 
 //displaying the main experiment
 
@@ -19,6 +20,7 @@ var corpus = " ";
     }
     else if(corpus === "Corpus 1" ){
 
+        corpus_selected = corpus;
         document.getElementById("cdisplay").innerHTML = corpus_one;
         document.getElementById("second-msg").innerHTML="Enter the number of tokens and types for the above corpus:"
         document.getElementById("table-display").style.display = "inline";
@@ -29,11 +31,16 @@ var corpus = " ";
         document.getElementById("input2").style.background = "transparent";
         document.getElementById("right-wrong").innerHTML = " ";
         document.getElementById("continue-button").style.display = "none";
+        document.getElementById("third-msg").innerHTML = " ";
+        document.getElementById("third-input").style.display = "none";
+        document.getElementById("input3").value ="";
         document.getElementById("submit-button").onclick = function(){ compare_tokens_and_types(corpus_one[0])};
 
            
     }
      else if(corpus === "Corpus 2" ){
+
+        corpus_selected = corpus;
         document.getElementById("cdisplay").innerHTML = corpus_two;
         document.getElementById("second-msg").innerHTML="Enter the number of tokens and types for the above corpus:"   
         document.getElementById("table-display").style.display = "inline";
@@ -44,9 +51,14 @@ var corpus = " ";
         document.getElementById("input2").style.background = "transparent";
         document.getElementById("right-wrong").innerHTML = " ";
         document.getElementById("continue-button").style.display = "none";
+        document.getElementById("third-msg").innerHTML = " ";
+        document.getElementById("third-input").style.display = "none";
+        document.getElementById("input3").value ="";
         document.getElementById("submit-button").onclick = function(){compare_tokens_and_types(corpus_two[0])};
     }
      else if(corpus === "Corpus 3" ){
+
+        corpus_selected = corpus;
         document.getElementById("cdisplay").innerHTML = corpus_three;
         document.getElementById("second-msg").innerHTML="Enter the number of tokens and types for the above corpus:"  
         document.getElementById("table-display").style.display = "inline"; 
@@ -57,6 +69,9 @@ var corpus = " ";
         document.getElementById("input2").style.background = "transparent";
         document.getElementById("right-wrong").innerHTML = " ";
         document.getElementById("continue-button").style.display = "none";
+        document.getElementById("third-msg").innerHTML = " ";
+        document.getElementById("third-input").style.display = "none";
+        document.getElementById("input3").value ="";
         document.getElementById("submit-button").onclick = function(){compare_tokens_and_types(corpus_three[0])};
     }
 }  
@@ -166,3 +181,14 @@ function count_types(corp)
      str = data.filter((value,index) => data.indexOf(value) === index );
       return str;
    }
+
+ function compare_stem_word()
+ {
+
+      document.getElementById("submit-button").style.display = "none";
+      document.getElementById("continue-button").style.display = "none";
+      document.getElementById("right-wrong").style.display = "none";
+      document.getElementById("third-msg").innerHTML = "Now, consider all the tokens with the same 'root' word to be of the same type. Recalculate the number of types:";
+      document.getElementById("third-input").style.display = "inline";
+
+ }
