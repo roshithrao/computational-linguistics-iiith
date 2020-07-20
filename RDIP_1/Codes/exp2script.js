@@ -9,6 +9,13 @@ var corpus_three =['A man had a little dog, and he was very fond of it. He would
 var corpus = " ";
 var corpus_selected = " ";
 
+var stemmer = new Snowball('English');
+stemmer.setCurrent('abbreviations');    
+stemmer.stem()
+console.log(stemmer.stem())
+console.log(stemmer.getCurrent());
+
+
 //displaying the main experiment
 
  function expdisp(){
