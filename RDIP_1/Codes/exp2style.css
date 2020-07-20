@@ -66,3 +66,9 @@ table,td
     border: 1px solid #b2bbc0;
     max-width: 700px;
 }
+
+#right-wrong
+{
+    font-size: 40px;
+    color: green;
+}

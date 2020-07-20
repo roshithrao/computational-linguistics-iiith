@@ -15,9 +15,9 @@
        <div class="heading">
             <h1>Experiment</h1>
          </div>
-         <center>
+      <center>
          <div class="selection-list">
-            <select id="corpus-selection" onchange="expdisplay()">
+            <select id="corpus-selection" onchange="expdisp()">
                <option value="null">----Select a corpus----</option>
                <option value="Corpus1">Corpus 1</option>
                <option value="Corpus2">Corpus 2</option>
@@ -36,15 +36,20 @@
                 <td><input type="text" id="input2" size="4" font size="4px" font color="darkslategrey"></td>
             </tr>
           </table>
+          <br>
+        <button id="submit-button" style="display: none;">Submit</button>  
+        <br>
+        <br>
+        <p id= "right-wrong" style="display: none;">Correct answer!!!</p>
+        <br>
+        <br>
+        <button id="continue-button" style="display: none;">Continue</button>  
+        
 
       </center>
 
 
         </div>
-
-
-
-     </div> 
   
 
 

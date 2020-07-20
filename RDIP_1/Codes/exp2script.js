@@ -1,4 +1,4 @@
-
+//corpuses required
 
 var corpus_one =['A mouse was having a very bad time. She could find no food at all. She looked here and there, but there was no food, and she grew very thin. At last the mouse found a basket, full of corn. There was a small hole in the basket, and she crept in. She could just get through the hole. Then she began to eat the corn. Being very hungry, she ate a great deal, and went on eating and eating. She had grown very fat before she felt that she had had enough. When the mouse tried to climb out of the basket, she could not. She was too fat to pass through the hole. "How shall I climb out?" said the mouse. "oh, how shall I climb out?" Just then a rat came along, and he heard the mouse. "Mouse," said the rat, "if you want to climb out of the basket, you must wait till you have grown as thin as you were when you went in.']
 
@@ -8,34 +8,161 @@ var corpus_three =['A man had a little dog, and he was very fond of it. He would
 
 var corpus = " ";
 
+//displaying the main experiment
 
-
- function expdisplay(){
+ function expdisp(){
 	
     corpus = document.getElementById('corpus-selection').options[document.getElementById('corpus-selection').selectedIndex].text;
-    if(corpus == "----Select a corpus----"){
+    if(corpus === "----Select a corpus----"){
         alert('Select a Corpus');
         return false;
     }
-    else if(corpus == "Corpus 1" ){
+    else if(corpus === "Corpus 1" ){
+
         document.getElementById("cdisplay").innerHTML = corpus_one;
         document.getElementById("second-msg").innerHTML="Enter the number of tokens and types for the above corpus:"
-        document.getElementById("table-display").style.display = "initial";
+        document.getElementById("table-display").style.display = "inline";
+        document.getElementById("submit-button").style.display = "inline";
+        document.getElementById("input1").value ="";
+        document.getElementById("input2").value ="";
+        document.getElementById("input1").style.background = "transparent";
+        document.getElementById("input2").style.background = "transparent";
+        document.getElementById("right-wrong").innerHTML = " ";
+        document.getElementById("continue-button").style.display = "none";
+        document.getElementById("submit-button").onclick = function(){ compare_tokens_and_types(corpus_one[0])};
+
            
     }
-     else if(corpus == "Corpus 2" ){
+     else if(corpus === "Corpus 2" ){
         document.getElementById("cdisplay").innerHTML = corpus_two;
         document.getElementById("second-msg").innerHTML="Enter the number of tokens and types for the above corpus:"   
-        document.getElementById("table-display").style.display = "initial";
+        document.getElementById("table-display").style.display = "inline";
+        document.getElementById("submit-button").style.display = "inline";
+         document.getElementById("input1").value ="";
+        document.getElementById("input2").value ="";
+        document.getElementById("input1").style.background = "transparent";
+        document.getElementById("input2").style.background = "transparent";
+        document.getElementById("right-wrong").innerHTML = " ";
+        document.getElementById("continue-button").style.display = "none";
+        document.getElementById("submit-button").onclick = function(){compare_tokens_and_types(corpus_two[0])};
     }
-     else if(corpus == "Corpus 3" ){
+     else if(corpus === "Corpus 3" ){
         document.getElementById("cdisplay").innerHTML = corpus_three;
         document.getElementById("second-msg").innerHTML="Enter the number of tokens and types for the above corpus:"  
-        document.getElementById("table-display").style.display = "initial"; 
+        document.getElementById("table-display").style.display = "inline"; 
+        document.getElementById("submit-button").style.display = "inline";
+         document.getElementById("input1").value ="";
+        document.getElementById("input2").value ="";
+        document.getElementById("input1").style.background = "transparent";
+        document.getElementById("input2").style.background = "transparent";
+        document.getElementById("right-wrong").innerHTML = " ";
+        document.getElementById("continue-button").style.display = "none";
+        document.getElementById("submit-button").onclick = function(){compare_tokens_and_types(corpus_three[0])};
     }
 }  
 
+//comaparing tokens and types
+
+function compare_tokens_and_types(corp)
+{
+    document.getElementById("right-wrong").style.display = "none";
+    var token_count = count_tokens(corp);
+    var type_count = count_types(corp);
+    var given_token_count = (document.getElementById("input1").value);
+    var given_type_count  = (document.getElementById("input2").value);
+    var validate1 = given_token_count.match(/^[0-9]+$/);
+    var validate2 = given_type_count.match(/^[0-9]+$/);
+    var given_token_count2 = parseInt(given_token_count);
+    var given_type_count2  = parseInt(given_type_count);
+
+        if(given_token_count = "" || given_type_count == "" )
+        {
+            alert("Enter number of tokens and types");
+        }
+        
+        else if ( (validate1 == null) || (validate2 == null))
+        {
+            alert("please enter numeric value only.");
+        }
+        else if(given_token_count2 == token_count && given_type_count2 == type_count)
+        {
+
+            document.getElementById("input1").style.background = "green";
+            document.getElementById("input2").style.background = "green";
+            document.getElementById("right-wrong").innerHTML = "Correct answer!!!"
+            document.getElementById("right-wrong").style.color = "green";
+            document.getElementById("right-wrong").style.display ="inline";
+            document.getElementById("continue-button").style.display ="inline";
+        }
+        else
+       {
+         
+         if(given_token_count2 == token_count)
+        {
+            document.getElementById("input1").style.background = "green";
+        }
+         if(given_token_count2 !== token_count)
+        {
+            document.getElementById("input1").style.background = "red";
+        }
+          if(given_type_count2 == type_count)
+        {
+            document.getElementById("input2").style.background = "green";
+        }
+        if(given_type_count2 !== type_count)
+        {
+            document.getElementById("input2").style.background = "red";
+        }
+       document.getElementById("right-wrong").innerHTML = "Wrong answer!!!"
+       document.getElementById("right-wrong").style.color = "red";
+       document.getElementById("right-wrong").style.display ="inline";
+       document.getElementById("continue-button").style.display ="none";
 
 
+       }
+}
 
+//counting tokens in the corpus
 
+function count_tokens(corp)
+{
+   var str = corp; 
+  //removing all extra characters except words and spaces from the corpus
+  str= str.replace(/[^\w\s]|_/g, "");
+  str = str.replace(/\s+/g, " ");
+
+// spliting and counting the words in the corpus
+  var count = str.split(" ").length;
+
+  return count;
+
+}
+
+//counting types in the corpus
+
+function count_types(corp)
+{
+   var str=corp;
+ //removing all extra characters except words and spaces from the corpus
+   str= str.replace(/[^\w\s]|_/g, "")
+   str =  str.replace(/\s+/g, " ");
+
+ // spliting and counting the words in the corpus
+   str=str.split(" ");
+
+ //converting to lowercase and spliting
+   str=str.join('|').toLowerCase().split('|');
+
+ //removing duplicates from the corpus
+  str = removeDuplicates(str);
+  //calling the function and returning the length
+   count = str.length;
+    
+   return count;
+}
+
+    function removeDuplicates(data)
+   {
+     str = data.filter((value,index) => data.indexOf(value) === index );
+      return str;
+   }
