@@ -39,6 +39,8 @@ console.log(stemmer.getCurrent()); */
         document.getElementById("third-msg").innerHTML = " ";
         document.getElementById("third-input").style.display = "none";
         document.getElementById("input3").value ="";
+        document.getElementById("input3").style.background ="transparent";
+        document.getElementById("right-wrong2").innerHTML = " ";
         document.getElementById("submit-button").onclick = function(){ compare_tokens_and_types(corpus_one[0])};
         
 
@@ -60,6 +62,8 @@ console.log(stemmer.getCurrent()); */
         document.getElementById("third-msg").innerHTML = " ";
         document.getElementById("third-input").style.display = "none";
         document.getElementById("input3").value ="";
+        document.getElementById("input3").style.background ="transparent";
+        document.getElementById("right-wrong2").innerHTML = " ";
         document.getElementById("submit-button").onclick = function(){compare_tokens_and_types(corpus_two[0])};
         
     }
@@ -70,7 +74,7 @@ console.log(stemmer.getCurrent()); */
         document.getElementById("second-msg").innerHTML="Enter the number of tokens and types for the above corpus:"  
         document.getElementById("table-display").style.display = "inline"; 
         document.getElementById("submit-button").style.display = "inline";
-         document.getElementById("input1").value ="";
+        document.getElementById("input1").value ="";
         document.getElementById("input2").value ="";
         document.getElementById("input1").style.background = "transparent";
         document.getElementById("input2").style.background = "transparent";
@@ -79,6 +83,8 @@ console.log(stemmer.getCurrent()); */
         document.getElementById("third-msg").innerHTML = " ";
         document.getElementById("third-input").style.display = "none";
         document.getElementById("input3").value ="";
+        document.getElementById("input3").style.background ="transparent";
+        document.getElementById("right-wrong2").innerHTML = " ";
         document.getElementById("submit-button").onclick = function(){compare_tokens_and_types(corpus_three[0])};
        
     }
@@ -302,8 +308,11 @@ function split_and_count_types(corp)
       }
     }
   } 
-   console.log(arr);
-   new_type_count = count_types(arr);
+    console.log(arr);
+    new_type_count = count_types(arr);
+  
+   //comparison with the given input and displaying wrong or correct
+
     if(given_new_types = "")
     {
             alert("Enter number of new types");
@@ -316,11 +325,18 @@ function split_and_count_types(corp)
     }
     else if(given_new_types2 == new_type_count)
     {
-         alert("correct"); 
+         document.getElementById("right-wrong2").innerHTML = "Correct answer!!!"
+         document.getElementById("right-wrong2").style.color = "green";
+         document.getElementById("input3").style.background = "green";
+         document.getElementById("right-wrong2").style.display ="inline";
+
     }
     else
     {
-       alert("wrong");
+        document.getElementById("right-wrong2").innerHTML = "Wrong answer!!!"
+        document.getElementById("right-wrong2").style.color = "red";
+        document.getElementById("input3").style.background = "red";
+        document.getElementById("right-wrong2").style.display ="inline";
     }   
 
  }    
