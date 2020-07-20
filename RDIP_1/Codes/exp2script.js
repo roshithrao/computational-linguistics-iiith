@@ -10,24 +10,22 @@ var corpus = " ";
 var corpus_selected = " ";
 
 var stemmer = new Snowball('English');
-stemmer.setCurrent('abbreviations');    
-stemmer.stem()
-console.log(stemmer.stem())
-console.log(stemmer.getCurrent());
+/*stemmer.setCurrent('abbreviations');    
+stemmer.stem();
+console.log(stemmer.getCurrent()); */
 
 
 //displaying the main experiment
 
- function expdisp(){
+ function expdisp(value){
 	
-    corpus = document.getElementById('corpus-selection').options[document.getElementById('corpus-selection').selectedIndex].text;
-    if(corpus === "----Select a corpus----"){
+    if(value === "----Select a corpus----"){
         alert('Select a Corpus');
         return false;
     }
-    else if(corpus === "Corpus 1" ){
+    else if(value === "Corpus1" ){
 
-        corpus_selected = corpus;
+        corpus_selected = corpus_one[0];
         document.getElementById("cdisplay").innerHTML = corpus_one;
         document.getElementById("second-msg").innerHTML="Enter the number of tokens and types for the above corpus:"
         document.getElementById("table-display").style.display = "inline";
@@ -42,12 +40,13 @@ console.log(stemmer.getCurrent());
         document.getElementById("third-input").style.display = "none";
         document.getElementById("input3").value ="";
         document.getElementById("submit-button").onclick = function(){ compare_tokens_and_types(corpus_one[0])};
+        
 
            
     }
-     else if(corpus === "Corpus 2" ){
+     else if(value === "Corpus2" ){
 
-        corpus_selected = corpus;
+        corpus_selected = corpus_two[0];
         document.getElementById("cdisplay").innerHTML = corpus_two;
         document.getElementById("second-msg").innerHTML="Enter the number of tokens and types for the above corpus:"   
         document.getElementById("table-display").style.display = "inline";
@@ -62,10 +61,11 @@ console.log(stemmer.getCurrent());
         document.getElementById("third-input").style.display = "none";
         document.getElementById("input3").value ="";
         document.getElementById("submit-button").onclick = function(){compare_tokens_and_types(corpus_two[0])};
+        
     }
-     else if(corpus === "Corpus 3" ){
+     else if(value === "Corpus3" ){
 
-        corpus_selected = corpus;
+        corpus_selected = corpus_three[0];
         document.getElementById("cdisplay").innerHTML = corpus_three;
         document.getElementById("second-msg").innerHTML="Enter the number of tokens and types for the above corpus:"  
         document.getElementById("table-display").style.display = "inline"; 
@@ -80,6 +80,7 @@ console.log(stemmer.getCurrent());
         document.getElementById("third-input").style.display = "none";
         document.getElementById("input3").value ="";
         document.getElementById("submit-button").onclick = function(){compare_tokens_and_types(corpus_three[0])};
+       
     }
 }  
 
@@ -89,7 +90,7 @@ function compare_tokens_and_types(corp)
 {
     document.getElementById("right-wrong").style.display = "none";
     var token_count = count_tokens(corp);
-    var type_count = count_types(corp);
+    var type_count = split_and_count_types(corp);
     var given_token_count = (document.getElementById("input1").value);
     var given_type_count  = (document.getElementById("input2").value);
     var validate1 = given_token_count.match(/^[0-9]+$/);
@@ -115,6 +116,8 @@ function compare_tokens_and_types(corp)
             document.getElementById("right-wrong").style.color = "green";
             document.getElementById("right-wrong").style.display ="inline";
             document.getElementById("continue-button").style.display ="inline";
+            document.getElementById("continue-button").onclick = function(){compare_stem_word(corp)};
+            
         }
         else
        {
@@ -162,7 +165,7 @@ function count_tokens(corp)
 
 //counting types in the corpus
 
-function count_types(corp)
+function split_and_count_types(corp)
 {
    var str=corp;
  //removing all extra characters except words and spaces from the corpus
@@ -171,25 +174,36 @@ function count_types(corp)
 
  // spliting and counting the words in the corpus
    str=str.split(" ");
-
- //converting to lowercase and spliting
-   str=str.join('|').toLowerCase().split('|');
-
- //removing duplicates from the corpus
-  str = removeDuplicates(str);
-  //calling the function and returning the length
-   count = str.length;
+   
+   count = count_types(str);
     
    return count;
 }
 
+  function count_types(str)
+  {
+     //converting to lowercase and spliting
+   str=str.join('|').toLowerCase().split('|');
+
+    //removing duplicates from the corpus
+  str = removeDuplicates(str);
+  //calling the function and returning the length
+  console.log(str);
+  count = str.length;
+
+   return count;
+ }
+   
     function removeDuplicates(data)
    {
-     str = data.filter((value,index) => data.indexOf(value) === index );
-      return str;
+       data = data.filter( function( item, index, inpArray ) {
+            
+           return inpArray.indexOf(item) == index;
+    });
+      return data;
    }
-
- function compare_stem_word()
+   
+ function compare_stem_word(corp)
  {
 
       document.getElementById("submit-button").style.display = "none";
@@ -197,5 +211,35 @@ function count_types(corp)
       document.getElementById("right-wrong").style.display = "none";
       document.getElementById("third-msg").innerHTML = "Now, consider all the tokens with the same 'root' word to be of the same type. Recalculate the number of types:";
       document.getElementById("third-input").style.display = "inline";
+      document.getElementById("submit-button2").onclick = function(){ count_stem_words(corp)};
+      
+
+ }
+
+ function count_stem_words(corp)
+ {
+    var str=corp;
+ //removing all extra characters except words and spaces from the corpus
+   str= str.replace(/[^\w\s]|_/g, "")
+   str = str.replace(/\s+/g, " ");
+
+ // spliting and counting the words in the corpus
+   str=str.split(" ");
+   var arr = [];
+
+   for(var i =0; i<str.length;i++)
+   {
+
+      stemmer.setCurrent(str[i]);
+      stemmer.stem();
+      //console.log(stemmer.getCurrent());
+      arr.push(stemmer.getCurrent());
+    
+
+   }
+   console.log(arr);
+   count = count_types(arr);
+   console.log(count);
+
 
  }

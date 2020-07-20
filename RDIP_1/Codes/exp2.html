@@ -19,8 +19,8 @@
          </div>
       <center>
          <div class="selection-list">
-            <select id="corpus-selection" onchange="expdisp()">
-               <option value="null">----Select a corpus----</option>
+            <select id="corpus-selection" onchange="expdisp(this.value)">
+               <option value="----Select a corpus----">----Select a corpus----</option>
                <option value="Corpus1">Corpus 1</option>
                <option value="Corpus2">Corpus 2</option>
                <option value="Corpus3">Corpus 3</option>
@@ -45,7 +45,7 @@
         <p id= "right-wrong" style="display: none;">Correct answer!!!</p>
         <br>
         <br>
-        <button id="continue-button" style="display: none;" onclick="compare_stem_word()">Continue</button> 
+        <button id="continue-button" style="display: none;">Continue</button> 
         <p id="third-msg" style="text-align: center"></p>
         <div id="third-input" style="display: none;">
           <label id = "displabel">#new types:</label>
