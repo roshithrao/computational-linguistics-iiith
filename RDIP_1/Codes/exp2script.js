@@ -116,7 +116,7 @@ function compare_tokens_and_types(corp)
             document.getElementById("right-wrong").style.color = "green";
             document.getElementById("right-wrong").style.display ="inline";
             document.getElementById("continue-button").style.display ="inline";
-            document.getElementById("continue-button").onclick = function(){compare_stem_word(corp)};
+            document.getElementById("continue-button").onclick = function(){cont_func(corp)};
             
         }
         else
@@ -203,7 +203,7 @@ function split_and_count_types(corp)
       return data;
    }
    
- function compare_stem_word(corp)
+ function cont_func(corp)
  {
       var count = 0;
       document.getElementById("submit-button").style.display = "none";
@@ -211,14 +211,17 @@ function split_and_count_types(corp)
       document.getElementById("right-wrong").style.display = "none";
       document.getElementById("third-msg").innerHTML = "Now, consider all the tokens with the same 'root' word to be of the same type. Recalculate the number of types:";
       document.getElementById("third-input").style.display = "inline";
-      document.getElementById("submit-button2").onclick = function(){ count = count_stem_words(corp)};
+      document.getElementById("submit-button2").onclick = function(){ count_and_compare_stem_words(corp)};
 
  }
 
- function count_stem_words(corp)
+ function count_and_compare_stem_words(corp)
  {
     var str=corp;
-    var count = 0;
+    var new_type_count = 0;
+    var given_new_types = document.getElementById("input3").value;
+    var validate3 =  given_new_types.match(/^[0-9]+$/);
+    var given_new_types2 = parseInt(given_new_types);
     if(corp === corpus_one[0])
     {
  //removing all extra characters except words and spaces from the corpus
@@ -300,6 +303,24 @@ function split_and_count_types(corp)
     }
   } 
    console.log(arr);
-   count = count_types(arr);
-   console.log(count);
- }
+   new_type_count = count_types(arr);
+    if(given_new_types = "")
+    {
+            alert("Enter number of new types");
+    }
+        
+    else if(validate3 == null)
+    {
+     
+       alert("please enter numeric value only");
+    }
+    else if(given_new_types2 == new_type_count)
+    {
+         alert("correct"); 
+    }
+    else
+    {
+       alert("wrong");
+    }   
+
+ }    
