@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-US">
+   <head>
+      <meta charset="utf-8">
+      <meta name ="viewport" content="width=device-width,initial-scale=1.0">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      <link rel="stylesheet" href="exp3style.css">
+      <link rel="shortcut icon" href="../../src/themes/maroon-grid/images/logo.jpg">
+      <title>Virtual Labs</title>
+   </head>
+   <body>
+      <div class="experiment">
+      <div class="heading">
+         <h1>Experiment</h1>
+      </div>
+       <div style="text-align: center">
+          <div class="selection-list">
+            <select id="language" onchange= "expdisp(this.value)">
+               <option value="null">----Select Language----</option>
+               <option value="English">English</option>
+               <option value="Hindi">Hindi</option>
+            </select>
+          </div>  
+         <div id="selection-list-two"></div>
+
+       </div>  
+
+       <script src="exp3script.js"></script>
+
+  </body>
+
+</html>
+    
