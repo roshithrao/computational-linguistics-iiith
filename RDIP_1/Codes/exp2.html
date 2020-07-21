@@ -3,21 +3,17 @@
    <head>
       <meta charset="utf-8">
       <meta name ="viewport" content="width=device-width,initial-scale=1.0">
-       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-       <link rel="stylesheet" href="exp2style.css">
-
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      <link rel="stylesheet" href="exp2style.css">
       <link rel="shortcut icon" href="../../src/themes/maroon-grid/images/logo.jpg">
-     
-
       <title>Virtual Labs</title>
    </head>
    <body>
-
-   	 <div class="experiment">
-       <div class="heading">
-            <h1>Experiment</h1>
-         </div>
-      <center>
+      <div class="experiment">
+      <div class="heading">
+         <h1>Experiment</h1>
+      </div>
+       <div style="text-align: center">
          <div class="selection-list">
             <select id="corpus-selection" onchange="expdisp(this.value)">
                <option value="----Select a corpus----">----Select a corpus----</option>
@@ -25,44 +21,46 @@
                <option value="Corpus2">Corpus 2</option>
                <option value="Corpus3">Corpus 3</option>
             </select>
-         </div>   
-        <p id="cdisplay" style="text-align: center"></p>
-        <br>
-        <p id="second-msg" style="text-align: center"></p>
-        <div id="table-display">
-          <table style="text-align: center;">
-            <tr><td>#tokens:</td>
-                <td><input type="text" id="input1" size="4" font size="4px" font color="darkslategrey"></td>
-            </tr>
-             <tr><td>#types:</td>
-                <td><input type="text" id="input2" size="4" font size="4px" font color="darkslategrey"></td>
-            </tr>
-          </table>
-          <br>
-        <button id="submit-button" style="display: none;">Submit</button>  
-        <br>
-        <br>
-        <p id= "right-wrong" style="display: none;">Correct answer!!!</p>
-        <br>
-        <br>
-        <button id="continue-button" style="display: none;">Continue</button> 
-        <p id="third-msg" style="text-align: center"></p>
-        <div id="third-input" style="display: none;">
-          <label id = "displabel">#new types:</label>
-          <br>
-          <input type="text" id="input3" size="4" font size="4px" font color="darkslategrey">
-          <br>
-          <br>
-          <button id="submit-button2">Submit</button>
-          <br>
-          <br>
-          <p id= "right-wrong2" style="display: none;">Correct answer!!!</p>
-       </div>
-    </center>
-  </div>
-
-       <script src="..\Libraries\require.js"></script>
-       <script src = "..\Libraries\Snowball.min.js"></script>
-       <script src="exp2script.js"></script>   
- </body>
+         </div>
+         <p id="cdisplay" style="text-align: center"></p>
+         <br>
+         <p id="second-msg" style="text-align: center"></p>
+         <div id="table-display">
+            <table style="text-align: center;margin-left: auto;margin-right: auto;width: 100px;">
+               <tr>
+                  <td>#tokens:</td>
+                  <td><input type="text" id="input1" size="4"></td>
+               </tr>
+               <tr>
+                  <td>#types:</td>
+                  <td><input type="text" id="input2" size="4"></td>
+               </tr>
+            </table>
+         </div>
+            <br>
+            <button id="submit-button" style="display: none;">Submit</button>  
+            <br>
+            <br>
+            <p id= "right-wrong" style="display: none;">Correct answer!!!</p>
+            <br>
+            <br>
+            <button id="continue-button" style="display: none;">Continue</button> 
+            <p id="third-msg" style="text-align: center"></p>
+            <div id="third-input" style="display: none;">
+               <label id = "displabel">#new types:</label>
+               <br>
+               <input type="text" id="input3" size="4">
+               <br>
+               <br>
+               <button id="submit-button2">Submit</button>
+               <br>
+               <br>
+               <p id= "right-wrong2" style="display: none;">Correct answer!!!</p>
+            </div>
+          </div>
+      </div>
+      <script src="../Libraries/require.js"></script>
+      <script src = "../Libraries/Snowball.min.js"></script>
+      <script src="exp2script.js"></script>   
+   </body>
 </html>

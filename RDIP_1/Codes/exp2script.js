@@ -53,7 +53,7 @@ console.log(stemmer.getCurrent()); */
         document.getElementById("second-msg").innerHTML="Enter the number of tokens and types for the above corpus:"   
         document.getElementById("table-display").style.display = "inline";
         document.getElementById("submit-button").style.display = "inline";
-         document.getElementById("input1").value ="";
+        document.getElementById("input1").value ="";
         document.getElementById("input2").value ="";
         document.getElementById("input1").style.background = "transparent";
         document.getElementById("input2").style.background = "transparent";
@@ -194,7 +194,7 @@ function split_and_count_types(corp)
     //removing duplicates from the corpus
   str = removeDuplicates(str);
   //calling the function and returning the length
-  console.log(str);
+  //console.log(str);
   count = str.length;
 
    return count;
@@ -308,7 +308,7 @@ function split_and_count_types(corp)
       }
     }
   } 
-    console.log(arr);
+    //console.log(arr);
     new_type_count = count_types(arr);
   
    //comparison with the given input and displaying wrong or correct
@@ -340,3 +340,4 @@ function split_and_count_types(corp)
     }   
 
  }    
+
