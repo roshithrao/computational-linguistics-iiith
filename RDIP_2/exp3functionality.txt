@@ -1,0 +1,38 @@
+<Experiment heading>
+
+List of Button Functionalities :
+ 
+1.  page on load : Display selection dropdown
+     onchange  option 1 : english => display english sentences dropdown
+     onchange option 2 : hindi => display hindi sentences dropdown          
+ 2. On selecting english and respective sentence  from dropdown 
+    display the message and display the respective table with 4 columns --> LEXICON, POS, and 3rd column(answer   checking) and  4th column(answer display) as none;  with their tokens of the respective sentence in Lexicon and   selection   dropdown in the pos column
+3. selection dropdown in pos column contains contains parts of speech 
+    option 1 ->Noun
+    option 2 ->Pronoun
+    option 3 ->Verb
+    option 4 ->Adjective
+    option 5 ->Adverb
+    option 6 ->Determiner
+     option 7 ->Preposition
+    option 8 ->Conjunction
+    option 9 ->Interjection
+ 4. On selecting hindi and respective sentence  from dropdown 
+    dispaly the message and display the table with 4 columns --> LEXICON, POS, and 3rd(answer checking) and 4th  (answer display) as none;  with their tokens of the respective sentence in Lexicon and   selection dropdown in the pos column
+5. selection dropdown in pos column contains contains parts of speech 
+    option 1 ->Noun
+    option 2 ->Pronoun
+    option 3 ->Verb
+    option 4 ->Adjective
+    option 5 ->Adverb
+    option 6 ->Determiner
+     option 7 ->Preposition
+    option 8 ->Conjunction
+    option 9 ->Interjection
+6. Now onclicking submit button a function comapare() must compare the given user selected pos option with the actual     values[Answer values given](generated through pos tagger library) in the 4th column and should display right or wrong[image] in 3rd column for the given the   selected value in each row  and down to it Get Answer button should appear
+7. On clicking get answer button it should display the answer values in 4th column of the table and should toggle to hide answers button and all the answers in 4th column must disappear
+8. On going back it should clear everything
+
+------END OF EXPERIMENT----------------------------------------------------------------------------------------------
+
+  
