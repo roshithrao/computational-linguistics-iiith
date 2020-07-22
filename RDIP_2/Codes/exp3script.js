@@ -9,6 +9,15 @@ var sentence = " ";
 var value1 = " ";
 var user_pos_values = [];
 
+ var docx = nlp("Roshith rao am so cool");
+ //console.log(docx.data());
+
+ console.log(docx.sentences().terms().out('array'));
+
+ console.log(docx.sentences().terms().out('tags'));
+
+ console.log(docx.nouns().terms().text())
+
  function expdisp(value)
  {
     
