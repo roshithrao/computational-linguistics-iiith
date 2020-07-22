@@ -1,6 +1,6 @@
 //corpus requirements
 
-var english_sentences=['The child liked the chocol_tableate','She was stopped by the bravest knight','Mary baked a cake for his birthday','She decorated the cake carefully','Mary wore a dress with polka dots'];
+var english_sentences=['The child liked the chocolate','She was stopped by the bravest knight','Mary baked a cake for his birthday','She decorated the cake carefully','Mary wore a dress with polka dots'];
 
 var hindi_sentences=['राम ने सीता के लिए फल तोड़ा','छोटे बच्चे पाठशाला जल्दी आयेंगे','मेहनत का फल मीठा होता है','वाह वह खूबसूरत है','पेड़ से पत्ते गिर गए'];
 
@@ -12,6 +12,7 @@ var english_actual_pos_values = [];
 var hindi_actual_pos_values = [];
 var j = 0;
 var wrong_input = false;
+var changed_pos_dropdown = false;
 
  //var docx = nlp("bravest");
  //console.log(docx.data());
@@ -21,6 +22,9 @@ var wrong_input = false;
  //console.log(docx.sentences().out('tags'));
 
  //console.log(docx.nouns().terms().text())
+
+
+
 
  function expdisp(value)
  {
@@ -35,11 +39,12 @@ var wrong_input = false;
     	 
           value1 = value;
           j =0;
+          changed_pos_dropdown = false;
           document.getElementById("message").innerHTML = " ";
           document.getElementById("table-disp").innerHTML = " ";
           document.getElementById("submit-button").style.display = "none";
           document.getElementById("getanswer-button").style.display = "none";
-          var english_sen_selection='<select name="eng-sentences" id="eng-sen" onchange="display_sentence_table(this.value)"><option value="null">----Select Sentence----</option><option value="Esen1">The child liked the chocol_tableate.</option><option value="Esen2">She was stopped by the bravest knight.</option><option value="Esen3">Mary baked a cake for his birthday</option><option value="Esen4">She decorated the cake carefully</option><option value="Esen5">Mary wore a dress with polka dots.</option>'
+          var english_sen_selection='<select name="eng-sentences" id="eng-sen" onchange="display_sentence_table(this.value)"><option value="null">----Select Sentence----</option><option value="Esen1">The child liked the chocolate.</option><option value="Esen2">She was stopped by the bravest knight.</option><option value="Esen3">Mary baked a cake for his birthday</option><option value="Esen4">She decorated the cake carefully</option><option value="Esen5">Mary wore a dress with polka dots.</option>'
           document.getElementById("selection-list-two").innerHTML=english_sen_selection;
     }
     else if(value === "Hindi")
@@ -47,6 +52,7 @@ var wrong_input = false;
     	   
            value1 = value;
            j = 0;
+           changed_pos_dropdown = false;
     	   document.getElementById("message").innerHTML = " ";
            document.getElementById("table-disp").innerHTML = " "; 
            document.getElementById("submit-button").style.display = "none";
@@ -63,8 +69,15 @@ var wrong_input = false;
       document.getElementById("message").innerHTML = "Select the POS tag for corresponding words";
       document.getElementById("getanswer-button").style.display = "none";
       document.getElementById('getanswer-button').innerHTML = "Get Answer"
+      wrong_input = false;
+
    if(value1 === "English")
    {
+      //If the user selects a sentence while choosing dropdown then it automatically displays first sentence table with default dropdown values
+       if(changed_pos_dropdown == true) 
+      {
+      	  value = "Esen1";
+      }
 
       if(value === "null")
       {
@@ -99,18 +112,23 @@ var wrong_input = false;
       
       sentence= sentence.replace("."," ");
       sentence=sentence.split(" ");
-	  var col_table="<tr id='tablehead' style='col_tableor:brown;font-size:20px'><td>LEXICON</td><td>POS</td><td></td><td></td></tr>";
+	  var col_table="<tr id='tablehead' style='color:brown;font-size:20px'><td>LEXICON</td><td>POS</td><td></td><td></td></tr>";
 	  for(var i = 0; i < sentence.length; i++){
-		col_table = col_table +"<tr id='id"+i+"' style='font-size:18px;col_tableor:black;'><td>"+sentence[i]+"</td><td><select  id='posoption"+i+"' onchange='user_ans_array(this.id,this.value)'><option value='Noun'>Noun</option><option value='Pronoun'>Pronoun</option><option value='Verb'>Verb</option><option value='Adjective'>Adjective</option><option  value = 'Adverb'>Adverb</option><option value='Determiner'>Determiner</option><option value='Preposition'>Preposition</option><option value='Conjunction'>Conjunction</option><option value='Interjection'>Interjection</option></select></td><td id='img"+i+"'></td><td id='ans"+i+"'></td></tr>";
+		col_table = col_table +"<tr id='id"+i+"' style='font-size:18px;color:black;'><td>"+sentence[i]+"</td><td><select  id='posoption"+i+"' onchange='user_ans_array(this.id,this.value)'><option value='Noun'>Noun</option><option value='Pronoun'>Pronoun</option><option value='Verb'>Verb</option><option value='Adjective'>Adjective</option><option  value = 'Adverb'>Adverb</option><option value='Determiner'>Determiner</option><option value='Preposition'>Preposition</option><option value='Conjunction'>Conjunction</option><option value='Interjection'>Interjection</option></select></td><td id='img"+i+"'></td><td id='ans"+i+"'></td></tr>";
 	   user_pos_values[i] = "Noun"; //setting default user pos values as Noun
 	 }
      
       document.getElementById("table-disp").innerHTML = col_table;
       document.getElementById("submit-button").style.display ="inline"; //displaying submit button below table
-
+      changed_pos_dropdown = false;
  	}
  	 if(value1 === "Hindi")
    {
+   	   //If the user selects a sentence while choosing dropdown then it automatically displays first sentence table with default dropdown values
+   	   if(changed_pos_dropdown == true)
+      {
+      	  value = "Hsen1";
+      }
 
       if(value === "null")
       {
@@ -141,20 +159,18 @@ var wrong_input = false;
 	  {
 		sentence = hindi_sentences[4];
 		j = 4;
-	  }	
-      
-      sentence= sentence.replace("."," ");
+	  }	  
       sentence=sentence.split(" ");
-	  var col_table="<tr id= 'tablehead' style='col_tableor:brown;font-size:20px'><td>LEXICON</td><td>POS</td><td></td><td></td></tr>";
-	  for(var i = 0; i < sentence.length; i++){
-         col_table = col_table +"<tr id='id"+i+"' style='font-size:18px;col_tableor:black;'><td>"+sentence[i]+"</td><td><select  id='posoption"+i+"' onchange='user_ans_array(this.id,this.value)'><option value = 'Noun'>Noun</option><option value='Pronoun'>Pronoun</option><option value='Verb'>Verb</option><option value='Adjective'>Adjective</option><option  value = 'Adverb'>Adverb</option><option value='Determiner'>Determiner</option><option value='Postposition'>Postposition</option><option value='Conjunction'>Conjunction</option><option value='Interjection'>Interjection</option></select></td><td id='img"+i+"'></td><td id='ans"+i+"'></td></tr>";
-	  
-	   user_pos_values[i] = "Noun"; //setting default user pos values as Noun
-
-	   }
+	  var col_table="<tr id= 'tablehead' style='color:brown;font-size:20px'><td>LEXICON</td><td>POS</td><td></td><td></td></tr>";
+	  for(var i = 0; i < sentence.length; i++)
+	  {
+         col_table = col_table +"<tr id='id"+i+"' style='font-size:18px;color:black;'><td>"+sentence[i]+"</td><td><select  id='posoption"+i+"' onchange='user_ans_array(this.id,this.value)'><option value = 'Noun'>Noun</option><option value='Pronoun'>Pronoun</option><option value='Verb'>Verb</option><option value='Adjective'>Adjective</option><option  value = 'Adverb'>Adverb</option><option value='Determiner'>Determiner</option><option value='Postposition'>Postposition</option><option value='Conjunction'>Conjunction</option><option value='Interjection'>Interjection</option></select></td><td id='img"+i+"'></td><td id='ans"+i+"'></td></tr>";
+	     user_pos_values[i] = "Noun"; //setting default user pos values as Noun
+     }
      
       document.getElementById("table-disp").innerHTML = col_table;
       document.getElementById("submit-button").style.display ="inline"; //displaying submit button below table
+      changed_pos_dropdown = false;
      
 
  	}
@@ -166,6 +182,7 @@ var wrong_input = false;
 
  function user_ans_array(id,value)
  {
+ 	changed_pos_dropdown = true; //Checking if the user selected atleast one dropdown
     switch(id)
     {
        case 'posoption0' : user_pos_values[0] = value; 
@@ -187,10 +204,11 @@ var wrong_input = false;
 
 function compare_user_and_ans_pos()
 {
-
+    
    //console.log(user_pos_values);
    if(value1 == "English")
    {
+   	   changed_pos_dropdown = false; //if the user clicks submit button then it will not effect going to first sentence if selected sentence at this point of time
         for(var i =0;i<sentence.length;i++)
        {
            var docx = nlp(sentence[i]);
@@ -247,7 +265,7 @@ function compare_user_and_ans_pos()
         
       }
 
-        console.log(english_actual_pos_values);
+        //console.log(english_actual_pos_values);
         for(var i=0;i<sentence.length;i++)
         {
         	var image = " ";
@@ -270,6 +288,7 @@ function compare_user_and_ans_pos()
    }
    else if(value1 == "Hindi")
    {
+   	   changed_pos_dropdown = false; //if the user clicks submit button then it will not effect going to first sentence if selected sentence at this point of time
        
        hindi_actual_pos_values = [["Noun","Postposition","Noun","Postposition","Postposition","Noun","Verb"],["Adjective","Noun","Noun","Adverb","Verb"],["Noun","Postposition","Noun","Adjective","Verb","Verb"],["Interjection","Pronoun","Adjective","Verb"],["Noun","Postposition","Noun","Verb","Verb"]];
 
@@ -350,5 +369,5 @@ function get_and_hide_answer()
         }
       } 
   } 
-
+      
 } 
