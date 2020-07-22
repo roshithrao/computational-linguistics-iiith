@@ -24,7 +24,7 @@ var changed_pos_dropdown = false;
  //console.log(docx.nouns().terms().text())
 
 
-
+//displaying the experiment
 
  function expdisp(value)
  {
@@ -63,6 +63,8 @@ var changed_pos_dropdown = false;
     }       
 
  }
+
+ //displaying respective sentence table
 
  function display_sentence_table(value)
  {
@@ -112,9 +114,9 @@ var changed_pos_dropdown = false;
       
       sentence= sentence.replace("."," ");
       sentence=sentence.split(" ");
-	  var col_table="<tr id='tablehead' style='color:brown;font-size:20px'><td>LEXICON</td><td>POS</td><td></td><td></td></tr>";
+	  var col_table="<tr id='tablehead' class='thead' style='color:brown;font-size:20px'><td>LEXICON</td><td>POS</td><td></td><td></td></tr>";
 	  for(var i = 0; i < sentence.length; i++){
-		col_table = col_table +"<tr id='id"+i+"' style='font-size:18px;color:black;'><td>"+sentence[i]+"</td><td><select  id='posoption"+i+"' onchange='user_ans_array(this.id,this.value)'><option value='Noun'>Noun</option><option value='Pronoun'>Pronoun</option><option value='Verb'>Verb</option><option value='Adjective'>Adjective</option><option  value = 'Adverb'>Adverb</option><option value='Determiner'>Determiner</option><option value='Preposition'>Preposition</option><option value='Conjunction'>Conjunction</option><option value='Interjection'>Interjection</option></select></td><td id='img"+i+"'></td><td id='ans"+i+"'></td></tr>";
+		col_table = col_table +"<tr id='id"+i+"' style='font-size:18px;color:black;'><td>"+sentence[i]+"</td><td><select  id='posoption"+i+"' class = 'posdropdown' onchange='user_ans_array(this.id,this.value)'><option value='Noun'>Noun</option><option value='Pronoun'>Pronoun</option><option value='Verb'>Verb</option><option value='Adjective'>Adjective</option><option  value = 'Adverb'>Adverb</option><option value='Determiner'>Determiner</option><option value='Preposition'>Preposition</option><option value='Conjunction'>Conjunction</option><option value='Interjection'>Interjection</option></select></td><td id='img"+i+"'></td><td id='ans"+i+"'></td></tr>";
 	   user_pos_values[i] = "Noun"; //setting default user pos values as Noun
 	 }
      
@@ -161,10 +163,10 @@ var changed_pos_dropdown = false;
 		j = 4;
 	  }	  
       sentence=sentence.split(" ");
-	  var col_table="<tr id= 'tablehead' style='color:brown;font-size:20px'><td>LEXICON</td><td>POS</td><td></td><td></td></tr>";
+	  var col_table="<tr id= 'tablehead' class='thead' style='color:brown;font-size:20px'><td>LEXICON</td><td>POS</td><td></td><td></td></tr>";
 	  for(var i = 0; i < sentence.length; i++)
 	  {
-         col_table = col_table +"<tr id='id"+i+"' style='font-size:18px;color:black;'><td>"+sentence[i]+"</td><td><select  id='posoption"+i+"' onchange='user_ans_array(this.id,this.value)'><option value = 'Noun'>Noun</option><option value='Pronoun'>Pronoun</option><option value='Verb'>Verb</option><option value='Adjective'>Adjective</option><option  value = 'Adverb'>Adverb</option><option value='Determiner'>Determiner</option><option value='Postposition'>Postposition</option><option value='Conjunction'>Conjunction</option><option value='Interjection'>Interjection</option></select></td><td id='img"+i+"'></td><td id='ans"+i+"'></td></tr>";
+         col_table = col_table +"<tr id='id"+i+"' style='font-size:18px;color:black;'><td>"+sentence[i]+"</td><td><select  id='posoption"+i+"' class='posdropdown' onchange='user_ans_array(this.id,this.value)'><option value = 'Noun'>Noun</option><option value='Pronoun'>Pronoun</option><option value='Verb'>Verb</option><option value='Adjective'>Adjective</option><option  value = 'Adverb'>Adverb</option><option value='Determiner'>Determiner</option><option value='Postposition'>Postposition</option><option value='Conjunction'>Conjunction</option><option value='Interjection'>Interjection</option></select></td><td id='img"+i+"'></td><td id='ans"+i+"'></td></tr>";
 	     user_pos_values[i] = "Noun"; //setting default user pos values as Noun
      }
      
@@ -179,6 +181,7 @@ var changed_pos_dropdown = false;
     document.getElementById("submit-button").onclick = function(){ compare_user_and_ans_pos()};
  }
 
+//storing user dropdown values in an array
 
  function user_ans_array(id,value)
  {
@@ -202,6 +205,8 @@ var changed_pos_dropdown = false;
 
  }
 
+ //comparing user pos values with actual pos values basically submit button functionality
+
 function compare_user_and_ans_pos()
 {
     
@@ -211,14 +216,14 @@ function compare_user_and_ans_pos()
    	   changed_pos_dropdown = false; //if the user clicks submit button then it will not effect going to first sentence if selected sentence at this point of time
         for(var i =0;i<sentence.length;i++)
        {
-           var docx = nlp(sentence[i]);
-           var noun_word = docx.nouns().text();
-           var pronoun_word = docx.pronouns().text();
-           var verb_word  = docx.verbs().text();
-           var adjective_word = docx.adjectives().text();
-           var adverb_word = docx.adverbs().text();
-           var preposition_word = docx.prepositions().text();
-           var conjunction_word = docx.conjunctions().text();
+           var doc = nlp(sentence[i]);
+           var noun_word = doc.nouns().text();
+           var pronoun_word = doc.pronouns().text();
+           var verb_word  = doc.verbs().text();
+           var adjective_word = doc.adjectives().text();
+           var adverb_word = doc.adverbs().text();
+           var preposition_word = doc.prepositions().text();
+           var conjunction_word = doc.conjunctions().text();
 
 
 		if(noun_word!="")
@@ -320,6 +325,8 @@ function compare_user_and_ans_pos()
 
 }
 
+//getting and hiding answer functionality
+
 function get_and_hide_answer()
 {
 
@@ -371,3 +378,5 @@ function get_and_hide_answer()
   } 
       
 } 
+
+//End of js functionality
