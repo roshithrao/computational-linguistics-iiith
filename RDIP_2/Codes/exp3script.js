@@ -1,6 +1,6 @@
 //corpus requirements
 
-var english_sentences=['The child liked the chocolate','She was stopped by the bravest knight','Mary baked a cake for his birthday','She decorated the cake carefully','Mary wore a dress with polka dots'];
+var english_sentences=['The child liked the chocol_tableate','She was stopped by the bravest knight','Mary baked a cake for his birthday','She decorated the cake carefully','Mary wore a dress with polka dots'];
 
 var hindi_sentences=['राम ने सीता के लिए फल तोड़ा','छोटे बच्चे पाठशाला जल्दी आयेंगे','मेहनत का फल मीठा होता है','वाह वह खूबसूरत है','पेड़ से पत्ते गिर गए'];
 
@@ -8,8 +8,8 @@ var hindi_sentences=['राम ने सीता के लिए फल त�
 var sentence = " ";
 var value1 = " ";
 var user_pos_values = [];
-var english_actual_ans_values = [];
-var hindi_actual_ans_values = [];
+var english_actual_pos_values = [];
+var hindi_actual_pos_values = [];
 var j = 0;
 var wrong_input = false;
 
@@ -39,7 +39,7 @@ var wrong_input = false;
           document.getElementById("table-disp").innerHTML = " ";
           document.getElementById("submit-button").style.display = "none";
           document.getElementById("getanswer-button").style.display = "none";
-          var english_sen_selection='<select name="eng-sentences" id="eng-sen" onchange="display_sentence_table(this.value)"><option value="null">----Select Sentence----</option><option value="Esen1">The child liked the chocolate.</option><option value="Esen2">She was stopped by the bravest knight.</option><option value="Esen3">Mary baked a cake for his birthday</option><option value="Esen4">She decorated the cake carefully</option><option value="Esen5">Mary wore a dress with polka dots.</option>'
+          var english_sen_selection='<select name="eng-sentences" id="eng-sen" onchange="display_sentence_table(this.value)"><option value="null">----Select Sentence----</option><option value="Esen1">The child liked the chocol_tableate.</option><option value="Esen2">She was stopped by the bravest knight.</option><option value="Esen3">Mary baked a cake for his birthday</option><option value="Esen4">She decorated the cake carefully</option><option value="Esen5">Mary wore a dress with polka dots.</option>'
           document.getElementById("selection-list-two").innerHTML=english_sen_selection;
     }
     else if(value === "Hindi")
@@ -61,6 +61,8 @@ var wrong_input = false;
  function display_sentence_table(value)
  {
       document.getElementById("message").innerHTML = "Select the POS tag for corresponding words";
+      document.getElementById("getanswer-button").style.display = "none";
+      document.getElementById('getanswer-button').innerHTML = "Get Answer"
    if(value1 === "English")
    {
 
@@ -97,13 +99,13 @@ var wrong_input = false;
       
       sentence= sentence.replace("."," ");
       sentence=sentence.split(" ");
-	  var col="<tr id='tablehead' style='color:brown;font-size:20px'><td>LEXICON</td><td>POS</td><td></td><td></td></tr>";
+	  var col_table="<tr id='tablehead' style='col_tableor:brown;font-size:20px'><td>LEXICON</td><td>POS</td><td></td><td></td></tr>";
 	  for(var i = 0; i < sentence.length; i++){
-		col = col +"<tr id='id"+i+"' style='font-size:18px;color:black;'><td>"+sentence[i]+"</td><td><select  id='posoption"+i+"' onchange='user_ans_array(this.id,this.value)'><option value='Noun'>Noun</option><option value='Pronoun'>Pronoun</option><option value='Verb'>Verb</option><option value='Adjective'>Adjective</option><option  value = 'Adverb'>Adverb</option><option value='Determiner'>Determiner</option><option value='Preposition'>Preposition</option><option value='Conjunction'>Conjunction</option><option value='Interjection'>Interjection</option></select></td><td id='img"+i+"'></td><td></td></tr>";
+		col_table = col_table +"<tr id='id"+i+"' style='font-size:18px;col_tableor:black;'><td>"+sentence[i]+"</td><td><select  id='posoption"+i+"' onchange='user_ans_array(this.id,this.value)'><option value='Noun'>Noun</option><option value='Pronoun'>Pronoun</option><option value='Verb'>Verb</option><option value='Adjective'>Adjective</option><option  value = 'Adverb'>Adverb</option><option value='Determiner'>Determiner</option><option value='Preposition'>Preposition</option><option value='Conjunction'>Conjunction</option><option value='Interjection'>Interjection</option></select></td><td id='img"+i+"'></td><td id='ans"+i+"'></td></tr>";
 	   user_pos_values[i] = "Noun"; //setting default user pos values as Noun
 	 }
      
-      document.getElementById("table-disp").innerHTML = col;
+      document.getElementById("table-disp").innerHTML = col_table;
       document.getElementById("submit-button").style.display ="inline"; //displaying submit button below table
 
  	}
@@ -143,15 +145,15 @@ var wrong_input = false;
       
       sentence= sentence.replace("."," ");
       sentence=sentence.split(" ");
-	  var col="<tr id= 'tablehead' style='color:brown;font-size:20px'><td>LEXICON</td><td>POS</td><td></td><td></td></tr>";
+	  var col_table="<tr id= 'tablehead' style='col_tableor:brown;font-size:20px'><td>LEXICON</td><td>POS</td><td></td><td></td></tr>";
 	  for(var i = 0; i < sentence.length; i++){
-		col = col +"<tr id='id"+i+"' style='font-size:18px;color:black;'><td>"+sentence[i]+"</td><td><select  id='posoption"+i+"' onchange='user_ans_array(this.id,this.value)'><option value = 'Noun'>Noun</option><option value='Pronoun'>Pronoun</option><option value='Verb'>Verb</option><option value='Adjective'>Adjective</option><option  value = 'Adverb'>Adverb</option><option value='Determiner'>Determiner</option><option value='Postposition'>Postposition</option><option value='Conjunction'>Conjunction</option><option value='Interjection'>Interjection</option></select></td><td id='img"+i+"'></td><td></td></tr>";
+         col_table = col_table +"<tr id='id"+i+"' style='font-size:18px;col_tableor:black;'><td>"+sentence[i]+"</td><td><select  id='posoption"+i+"' onchange='user_ans_array(this.id,this.value)'><option value = 'Noun'>Noun</option><option value='Pronoun'>Pronoun</option><option value='Verb'>Verb</option><option value='Adjective'>Adjective</option><option  value = 'Adverb'>Adverb</option><option value='Determiner'>Determiner</option><option value='Postposition'>Postposition</option><option value='Conjunction'>Conjunction</option><option value='Interjection'>Interjection</option></select></td><td id='img"+i+"'></td><td id='ans"+i+"'></td></tr>";
 	  
 	   user_pos_values[i] = "Noun"; //setting default user pos values as Noun
 
 	   }
      
-      document.getElementById("table-disp").innerHTML = col;
+      document.getElementById("table-disp").innerHTML = col_table;
       document.getElementById("submit-button").style.display ="inline"; //displaying submit button below table
      
 
@@ -203,53 +205,53 @@ function compare_user_and_ans_pos()
 
 		if(noun_word!="")
 		{
-			english_actual_ans_values[i]="Noun";
+			english_actual_pos_values[i]="Noun";
 		}
 		else if(pronoun_word!="")
 		{
-			english_actual_ans_values[i]="Pronoun";
+			english_actual_pos_values[i]="Pronoun";
 		}
 		else if(verb_word!="")
 		{
-			english_actual_ans_values[i]="Verb";
+			english_actual_pos_values[i]="Verb";
 		}
 		else if(adjective_word!="")
 		{	
-			english_actual_ans_values[i]="Adjective";
+			english_actual_pos_values[i]="Adjective";
 		}
 		else if(adverb_word!="")
 		{	
-			english_actual_ans_values[i]="Adverb";
+			english_actual_pos_values[i]="Adverb";
 		}	
 		else if(preposition_word!="")
 		{	
-			english_actual_ans_values[i]="Preposition";
+			english_actual_pos_values[i]="Preposition";
 		}	
 		else if(conjunction_word!="")
 		{	
-			english_actual_ans_values[i]="Conjunction";
+			english_actual_pos_values[i]="Conjunction";
 		}	
 		else
 		{	
-			english_actual_ans_values[i]="Determiner";
+			english_actual_pos_values[i]="Determiner";
         } 
           if(sentence[i]==="bravest")
           {
-             english_actual_ans_values[i]="Adjective";
+             english_actual_pos_values[i]="Adjective";
           }
           if(sentence[i]==="dress")
           {
-        	 english_actual_ans_values[i] = "Noun";
+        	 english_actual_pos_values[i] = "Noun";
           }
 
         
       }
 
-        console.log(english_actual_ans_values);
+        console.log(english_actual_pos_values);
         for(var i=0;i<sentence.length;i++)
         {
         	var image = " ";
-           if(user_pos_values[i]==english_actual_ans_values[i])
+           if(user_pos_values[i]==english_actual_pos_values[i])
            {
                image = "img"+i;
                document.getElementById(image).innerHTML='<img src="http://cl-iiith.vlabs.ac.in/exp7/right.png" width="50px" height="50px">';
@@ -269,12 +271,12 @@ function compare_user_and_ans_pos()
    else if(value1 == "Hindi")
    {
        
-       hindi_actual_ans_values = [["Noun","Postposition","Noun","Postposition","Postposition","Noun","Verb"],["Adjective","Noun","Noun","Adverb","Verb"],["Noun","Postposition","Noun","Adjective","Verb","Verb"],["Interjection","Pronoun","Adjective","Verb"],["Noun","Postposition","Noun","Verb","Verb"]];
+       hindi_actual_pos_values = [["Noun","Postposition","Noun","Postposition","Postposition","Noun","Verb"],["Adjective","Noun","Noun","Adverb","Verb"],["Noun","Postposition","Noun","Adjective","Verb","Verb"],["Interjection","Pronoun","Adjective","Verb"],["Noun","Postposition","Noun","Verb","Verb"]];
 
       for(var i =0;i<sentence.length;i++)
       {
            var image = " "
-       if(user_pos_values[i]==hindi_actual_ans_values[j][i])
+       if(user_pos_values[i]==hindi_actual_pos_values[j][i])
            {
                image = "img"+i;
                document.getElementById(image).innerHTML='<img src="http://cl-iiith.vlabs.ac.in/exp7/right.png" width="30px" height="30px">';
@@ -293,7 +295,60 @@ function compare_user_and_ans_pos()
     {   
     	//wrong pos value entered so getanswer button displayed
         document.getElementById("getanswer-button").style.display = "inline";
+        document.getElementById("getanswer-button").onclick = function(){get_and_hide_answer()};
 
     }  
+
+}
+
+function get_and_hide_answer()
+{
+
+  var button_name = document.getElementById("getanswer-button").innerHTML;
+  if(button_name == "Get Answer")
+   {    
+     var answer = " ";                       
+     document.getElementById('getanswer-button').innerHTML = "Hide Answer";
+     if(value1 == "English")
+     {
+        for(i=0;i<sentence.length;i++)
+        {
+        	answer = "ans"+i;
+        	document.getElementById(answer).innerHTML = english_actual_pos_values[i];
+        }
+     }
+      if(value1 == "Hindi")
+     {
+        for(i=0;i<sentence.length;i++)
+        {
+        	answer = "ans"+i;
+        	document.getElementById(answer).innerHTML = hindi_actual_pos_values[j][i];
+        }
+
+
+    } 
+
+  }
+  else if(button_name == "Hide Answer" )
+  {
+       var answer = " " ;
+       document.getElementById('getanswer-button').innerHTML = "Get Answer"
+       if(value1 == "English")
+      {
+        for(i=0;i<sentence.length;i++)
+        {
+        	answer = "ans"+i;
+        	document.getElementById(answer).innerHTML = " ";
+        }
+      } 
+      if(value1 == "Hindi")
+     {
+        for(i=0;i<sentence.length;i++)
+        {
+        	answer = "ans"+i;
+        	document.getElementById(answer).innerHTML = " ";
+        }
+      } 
+  } 
 
 } 
