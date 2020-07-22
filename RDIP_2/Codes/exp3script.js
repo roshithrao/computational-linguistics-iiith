@@ -11,6 +11,7 @@ var user_pos_values = [];
 var english_actual_ans_values = [];
 var hindi_actual_ans_values = [];
 var j = 0;
+var wrong_input = false;
 
  //var docx = nlp("bravest");
  //console.log(docx.data());
@@ -37,8 +38,8 @@ var j = 0;
           document.getElementById("message").innerHTML = " ";
           document.getElementById("table-disp").innerHTML = " ";
           document.getElementById("submit-button").style.display = "none";
+          document.getElementById("getanswer-button").style.display = "none";
           var english_sen_selection='<select name="eng-sentences" id="eng-sen" onchange="display_sentence_table(this.value)"><option value="null">----Select Sentence----</option><option value="Esen1">The child liked the chocolate.</option><option value="Esen2">She was stopped by the bravest knight.</option><option value="Esen3">Mary baked a cake for his birthday</option><option value="Esen4">She decorated the cake carefully</option><option value="Esen5">Mary wore a dress with polka dots.</option>'
-           
           document.getElementById("selection-list-two").innerHTML=english_sen_selection;
     }
     else if(value === "Hindi")
@@ -49,6 +50,7 @@ var j = 0;
     	   document.getElementById("message").innerHTML = " ";
            document.getElementById("table-disp").innerHTML = " "; 
            document.getElementById("submit-button").style.display = "none";
+           document.getElementById("getanswer-button").style.display = "none";
            var hindi_sen_selection='<select name="hindi-sentences" id="hin-sen" onchange = "display_sentence_table(this.value)"><option value="null">----Select Sentence----</option><option value="Hsen1">राम ने सीता के लिए फल तोड़ा।</option><option value="Hsen2">छोटे बच्चे पाठशाला जल्दी आयेंगे।</option><option value="Hsen3">मेहनत का फल मीठा होता है।</option><option value="Hsen4">वाह! वह खूबसूरत है।</option><option value="Hsen5">पेड़ से पत्ते गिर गए।</option>';
            document.getElementById("selection-list-two").innerHTML=hindi_sen_selection;  
 
@@ -257,7 +259,7 @@ function compare_user_and_ans_pos()
            {
                image = "img"+i;
                document.getElementById(image).innerHTML='<img src="http://cl-iiith.vlabs.ac.in/exp7/wrong.png" width="50px" height="50px">';        
-
+               wrong_input = true;
                   
            }
 
@@ -275,20 +277,23 @@ function compare_user_and_ans_pos()
        if(user_pos_values[i]==hindi_actual_ans_values[j][i])
            {
                image = "img"+i;
-               console.log(image);
                document.getElementById(image).innerHTML='<img src="http://cl-iiith.vlabs.ac.in/exp7/right.png" width="30px" height="30px">';
 
            }
            else
            {
                var image = "img"+i;
-               console.log(image);
-               document.getElementById(image).innerHTML='<img src="http://cl-iiith.vlabs.ac.in/exp7/wrong.png" width="30px" height="30px">';        
+               document.getElementById(image).innerHTML='<img src="http://cl-iiith.vlabs.ac.in/exp7/wrong.png" width="30px" height="30px">'; 
+               wrong_input = true;       
            }
       } 
   }
 
+    if(wrong_input)
+    {   
+    	//wrong pos value entered so getanswer button displayed
+        document.getElementById("getanswer-button").style.display = "inline";
 
-
+    }  
 
 } 
