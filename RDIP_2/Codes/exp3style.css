@@ -63,11 +63,12 @@ table
 	border-collapse: collapse;
 	margin-left: auto;
 	margin-right: auto;
-	width: auto;
+	width: 500px;
 	font-family: Lucida Sans Unicode;
 }
 
 #message
 {
 	color: #0000FF;
+	font-size: 25px;
 }
